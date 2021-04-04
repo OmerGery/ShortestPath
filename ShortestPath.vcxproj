@@ -139,13 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AlgoGraph\AlgoGraph\AdjacencyListGraph.h" />
-    <ClInclude Include="AlgoGraph\AlgoGraph\DynamicArray.h" />
-    <ClInclude Include="AlgoGraph\AlgoGraph\DynamicList.h" />
+    <ClInclude Include="AdjacencyListGraph.h" />
+    <ClInclude Include="DynamicArray.h" />
+    <ClInclude Include="DynamicList.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AlgoGraph\AlgoGraph\AdjacencyListGraph.cpp" />
-    <ClCompile Include="AlgoGraph\AlgoGraph\main.cpp" />
+    <ClCompile Include="AdjacencyListGraph.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

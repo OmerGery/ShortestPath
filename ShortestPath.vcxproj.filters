@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AlgoGraph\AlgoGraph\DynamicArray.h">
+    <ClInclude Include="AdjacencyListGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AlgoGraph\AlgoGraph\DynamicList.h">
+    <ClInclude Include="DynamicArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AlgoGraph\AlgoGraph\AdjacencyListGraph.h">
+    <ClInclude Include="DynamicList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AlgoGraph\AlgoGraph\main.cpp">
+    <ClCompile Include="AdjacencyListGraph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AlgoGraph\AlgoGraph\AdjacencyListGraph.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
