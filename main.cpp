@@ -6,19 +6,17 @@ using namespace AlgoGraph;
 
 int main()
 {
-	ifstream myfile;
-	myfile.open("a.txt");
-	int size = 0;
-	int enter;
-	int exit;
-	int a = 9;
-	a = a - 8;
+	ifstream inputFile;
+	inputFile.open("a.txt");
+	int numberOfVertex;
+	int pathStartingVertex;
+	int pathEndVertex;
 
-	myfile >> size;
-	myfile >> enter;
-	myfile >> exit;
+	inputFile >> numberOfVertex;
+	inputFile >> pathStartingVertex;
+	inputFile >> pathEndVertex;
 
-	AdjancencyListGraph myGraph(myfile, size);
+	AdjancencyListGraph myGraph(inputFile, numberOfVertex);
 
 	
 

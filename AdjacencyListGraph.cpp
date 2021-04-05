@@ -8,7 +8,7 @@ namespace AlgoGraph
 {
     AdjancencyListGraph::AdjancencyListGraph(int i_NumberOfVertex)
     {
-        m_AdjancencyList.set_logic_size(i_NumberOfVertex);
+        m_AdjancencyList.SetLogicalSize(i_NumberOfVertex);
     }
 
     AdjancencyListGraph::AdjancencyListGraph(ifstream& i_InputFile, int i_NumberOfVertex) : m_AdjancencyList(i_NumberOfVertex)
@@ -40,7 +40,7 @@ namespace AlgoGraph
             EdgeInAdjacencyList EdgeToBeAdded;
             EdgeToBeAdded.m_EdgeWeight = i_WeightOfEdge;
             EdgeToBeAdded.m_NeighboorVertex = i_InVertex;
-            m_AdjancencyList[i_OutVertex].addHead(EdgeToBeAdded);
+            m_AdjancencyList[i_OutVertex].AddItemToHead(EdgeToBeAdded);
         }
     }
 
@@ -49,7 +49,7 @@ namespace AlgoGraph
         EdgeInAdjacencyList EdgeToBeRemove;
         EdgeToBeRemove.m_EdgeWeight = 0;
         EdgeToBeRemove.m_NeighboorVertex = i_InVertex;
-        m_AdjancencyList[i_OutVertex].DelItem(EdgeToBeRemove);
+        m_AdjancencyList[i_OutVertex].DeleteItemByValue(EdgeToBeRemove);
     }
 
 
@@ -59,10 +59,9 @@ namespace AlgoGraph
         EdgeInAdjacencyList EdgeToFind;
         EdgeToFind.m_EdgeWeight = 0;
         EdgeToFind.m_NeighboorVertex = i_InVertex;
-        searchResult = m_AdjancencyList[i_OutVertex].getItem(EdgeToFind);
+        searchResult = m_AdjancencyList[i_OutVertex].ReturnRefrenceToItemByValue(EdgeToFind);
         return searchResult;
     }
-
 }
 
 

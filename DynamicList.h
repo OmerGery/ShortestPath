@@ -37,12 +37,12 @@ namespace AlgoGraph {
 			// copy entire contents of other list to this one
 			Item* otherhead = other.head;
 			while (otherhead != nullptr) {
-				addTail(otherhead->value);
+				AddItemToTail(otherhead->value);
 				otherhead = otherhead->next;
 			}
 		}
 
-		void addHead(T value)
+		void AddItemToHead(T value)
 		{
 			// create new item and set as head of list
 			Item* item = new Item;
@@ -55,7 +55,7 @@ namespace AlgoGraph {
 			if (tail == nullptr)
 				tail = head;
 		}
-		void addTail(T value)
+		void AddItemToTail(T value)
 		{
 			// create new item and set as tail of list
 			Item* item = new Item;
@@ -69,7 +69,7 @@ namespace AlgoGraph {
 				head = tail;
 		}
 
-		T delHead()
+		T DeleteItemFromHead()
 		{
 			// remove head item from list
 			Item* temp = head;
@@ -86,7 +86,7 @@ namespace AlgoGraph {
 			return value;
 		}
 
-		T delTail()
+		T DeleteItemFromTail()
 		{
 			// remove tail item from list
 			Item* temp = tail;
@@ -102,22 +102,16 @@ namespace AlgoGraph {
 			delete temp;
 			return value;
 		}
-		T getHead() const
+		T GetValueOfHead() const
 		{
 			return head->value;
 		}
-		T getTail() const
+		T GetValueOfTail() const
 		{
 			return tail->value;
 		}
 
-		T& getItem(int idx)
-		{
-			// will be explained in lecture 4
-			return const_cast<int&>(getItem(idx));
-		}
-		
-		T* getItem(T value)
+		T* ReturnRefrenceToItemByValue(T value)
 		{
 			Item* current = head;
 			while(current!=nullptr)
@@ -129,9 +123,7 @@ namespace AlgoGraph {
 			return nullptr;
 		}
 
-
-		//Need to fix if in head!
-		void DelItem(T value)
+		void DeleteItemByValue(T value)
 		{
 			if(head->value == value)
 			{
@@ -160,6 +152,11 @@ namespace AlgoGraph {
 			delete current;
 		}
 		
+		//Not in use for us but dont understand how it works.
+		T& GetItemByIndex(int i_IndexOfItemInList)
+		{
+			return const_cast<int&>(getItem(i_IndexOfItemInList));
+		}
 
 		const T& getItem(int idx) const
 		{

@@ -4,21 +4,24 @@ using namespace std;
 
 /*Template class for holding an generic arrays - implempanting iterators (normal, const, reverse)*/
 
-
-
 namespace AlgoGraph
 {
 	template <class T>
 	class DynamicArray
 	{
 	private:
-		void resize() {
+		T* _arr;
+		int _logicalSize;
+		int _physicalSize;
+
+		void resize()
+		{
 			_physicalSize *= 2;
-			T* temp= nullptr;
+			T* resizedArray = nullptr;
 
 			try
 			{
-				temp = new T[_physicalSize];
+				resizedArray = new T[_physicalSize];
 
 			}
 			catch (bad_alloc& ex)
@@ -27,15 +30,11 @@ namespace AlgoGraph
 			}
 
 			for (int i = 0; i < _logicalSize; i++)
-				temp[i] = _arr[i];
+				resizedArray[i] = _arr[i];
 
 			delete[] _arr;
-			_arr = temp;
+			_arr = resizedArray;
 		}
-
-		T* _arr;
-		int _logicalSize;
-		int _physicalSize;
 
 	public:
 
@@ -63,7 +62,6 @@ namespace AlgoGraph
 			delete[] _arr;
 		}
 
-
 		const DynamicArray& operator=(const DynamicArray& other) {
 			if (this != &other) {
 				_logicalSize = other._logicalSize;
@@ -85,27 +83,27 @@ namespace AlgoGraph
 			return *this;
 		}
 
-		const T& operator[](int i) const { return _arr[i]; }
+		const T& operator[](int i_indexInArray) const { return _arr[indexInArray]; }
 		
-		T& operator[](int i) { return _arr[i]; }
+		T& operator[](i_indexInArray) { return _arr[i_indexInArray]; }
 
 
 
-		void push_back(const T& value) {
+		void Push_back(const T& io_valueToBeAdded) {
 			if (_logicalSize == _physicalSize)
 				resize();
-			_arr[_logicalSize++] = value;
+			_arr[_logicalSize++] = io_valueToBeAdded;
 		}
 
 
-		const T& front()    const { return _arr[0]; }
-		int      size()     const { return _logicalSize; }
-		int      capacity() const { return _physicalSize; }
-		bool     empty()    const { return _logicalSize == 0; }
-		void     clear() { _logicalSize = 0; }
+		const T& Front()    const { return _arr[0]; }
+		int      GetSize()     const { return _logicalSize; }
+		int      GetCapacity() const { return _physicalSize; }
+		bool     isEmpty()    const { return _logicalSize == 0; }
+		void     EmptyTheArray() { _logicalSize = 0; }
 
 
-		void set_logic_size(int size) { _logicalSize = size; }
+		void SetLogicalSize(int i_SizeToSet) { _logicalSize = i_SizeToSet; }
 
 
 		class iterator
@@ -337,9 +335,7 @@ namespace AlgoGraph
 				_i += val;
 				return *this;
 			}
-
 		};
-
 
 
 		iterator begin() {
@@ -362,8 +358,6 @@ namespace AlgoGraph
 		rev_iterator rend() {
 			return rev_iterator(*this, -1);
 		}
-
-
 
 		void insert(const iterator& pos, const T& val)
 		{
@@ -447,8 +441,6 @@ namespace AlgoGraph
 			return first;
 		}
 
-
-
 		void insert(const rev_iterator& pos, const T& val)
 		{
 			if (_logicalSize == _physicalSize)
@@ -501,8 +493,6 @@ namespace AlgoGraph
 			return pos;
 		}
 
-
-
 		const  rev_iterator& erase(const  rev_iterator& first, const  rev_iterator& last)
 		{
 			if (first == end() && last == end())
@@ -534,12 +524,11 @@ namespace AlgoGraph
 			return first;
 		}
 
-
-		void print() const {
+		void PrintTheArray() const
+		{
 			for (int i = 0; i < _logicalSize; i++)
 				cout << _arr[i] << " ";
 			cout << endl;
 		}
-
 	};
 }
