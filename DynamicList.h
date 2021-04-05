@@ -135,12 +135,12 @@ namespace AlgoGraph {
 		{
 			if(head->value == value)
 			{
-				delHead();
+				DeleteItemFromHead();
 				return;
 			}
 			if(tail->value == value)
 			{
-				delTail();
+				DeleteItemFromTail();
 				return;
 			}
 			Item* prev = head;

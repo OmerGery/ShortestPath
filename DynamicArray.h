@@ -14,7 +14,7 @@ namespace AlgoGraph
 	private:
 		void resize() {
 			_physicalSize *= 2;
-			T* temp= nullptr;
+			T* temp = nullptr;
 
 			try
 			{
@@ -41,18 +41,18 @@ namespace AlgoGraph
 
 		DynamicArray(int size = 2) : _logicalSize(0), _physicalSize(size)
 		{
-	
-			try 
+
+			try
 			{
-				_arr = new T[size]; 
+				_arr = new T[size];
 			}
 			catch (bad_alloc& ex)
 			{
 				cout << "Error with allocating new " << typeid(T).name() << " Array" << ex.what() << endl;
 				return;
 			}
-	
-			
+
+
 		}
 
 		DynamicArray(const DynamicArray& other) : _arr(nullptr) {
@@ -78,7 +78,7 @@ namespace AlgoGraph
 				{
 					cout << ex.what() << endl;
 				}
-				
+
 				for (int i = 0; i < _logicalSize; i++)
 					_arr[i] = other._arr[i];
 			}
@@ -86,7 +86,7 @@ namespace AlgoGraph
 		}
 
 		const T& operator[](int i) const { return _arr[i]; }
-		
+
 		T& operator[](int i) { return _arr[i]; }
 
 
