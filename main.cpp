@@ -11,6 +11,8 @@ int main()
 	int size = 0;
 	int enter;
 	int exit;
+	int a = 9;
+	a = a - 8;
 
 	myfile >> size;
 	myfile >> enter;
