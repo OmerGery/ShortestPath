@@ -16,7 +16,7 @@ namespace AlgoGraph
         int inVertex;
         int outVertex;
         int weightOfVertex;
-        while(!i_InputFile.eof())
+        while (!i_InputFile.eof())
         {
             i_InputFile >> outVertex >> inVertex >> weightOfVertex;
             AddEdgeToGraph(outVertex, inVertex, weightOfVertex);
@@ -25,22 +25,22 @@ namespace AlgoGraph
 
     AdjancencyListGraph::~AdjancencyListGraph()
     {
-        
+
     }
 
 
-    void AdjancencyListGraph::AddEdgeToGraph(int i_OutVertex, int i_InVertex,  int i_WeightOfEdge)
+    void AdjancencyListGraph::AddEdgeToGraph(int i_OutVertex, int i_InVertex, int i_WeightOfEdge)
     {
-        if( FindEdgeInGraph(i_OutVertex, i_InVertex) != nullptr)
+        if (FindEdgeInGraph(i_OutVertex, i_InVertex) != nullptr)
         {
-            return;
+            return; //need to check if edge is lighter weight
         }
         else
         {
             EdgeInAdjacencyList EdgeToBeAdded;
             EdgeToBeAdded.m_EdgeWeight = i_WeightOfEdge;
             EdgeToBeAdded.m_NeighboorVertex = i_InVertex;
-            m_AdjancencyList[i_OutVertex].addHead(EdgeToBeAdded);
+            m_AdjancencyList[i_OutVertex].AddItemToHead(EdgeToBeAdded);
         }
     }
 
@@ -49,7 +49,7 @@ namespace AlgoGraph
         EdgeInAdjacencyList EdgeToBeRemove;
         EdgeToBeRemove.m_EdgeWeight = 0;
         EdgeToBeRemove.m_NeighboorVertex = i_InVertex;
-        m_AdjancencyList[i_OutVertex].DelItem(EdgeToBeRemove);
+        m_AdjancencyList[i_OutVertex].DeleteItemByValue(EdgeToBeRemove);
     }
 
 
@@ -59,13 +59,7 @@ namespace AlgoGraph
         EdgeInAdjacencyList EdgeToFind;
         EdgeToFind.m_EdgeWeight = 0;
         EdgeToFind.m_NeighboorVertex = i_InVertex;
-        searchResult = m_AdjancencyList[i_OutVertex].getItem(EdgeToFind);
+        searchResult = m_AdjancencyList[i_OutVertex].ReturnRefrenceToItemByValue(EdgeToFind);
         return searchResult;
     }
-
 }
-
-
-
-
-
