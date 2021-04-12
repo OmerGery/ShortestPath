@@ -8,22 +8,40 @@ using namespace AlgoGraph;
 
 
 
-bool CheckInputFileValidity(ifstream& inputFile)
-{
-	//Need to check threes is file
-	return true;
-}
-
-int main()
+bool CheckInputFileValidity(string i_inputFileName)
 {
 	ifstream inputFile;
-	if (!CheckInputFileValidity(inputFile))
+	inputFile.open(i_inputFileName);
+	//Continue to check if file is ok......
+	
+	return true; //just for now
+}
+
+bool CheckComandArguments(int argc)
+{
+	return argc == 2;
+}
+
+int main(int argc, char* argv[])
+{
+	string inputFileName;
+	if (CheckComandArguments)
 	{
-		cout << "Wrong Input";
+		inputFileName = argv[1];
+	}
+	else
+	{
+		cout << "Error with program command arguments";
 		exit(2);
 	}
 
-	inputFile.open("a.txt");
+	if (!CheckInputFileValidity(inputFileName))
+	{
+		cout << "Wrong Input";
+		exit(3);
+	}
+	ifstream inputFile;
+	inputFile.open(inputFileName);
 	int numberOfVertex;
 	int pathStartingVertex;
 	int pathEndVertex;
