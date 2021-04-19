@@ -9,7 +9,7 @@
 namespace AlgoGraph
 {
 	
-	class AdjacencyMatrixGraph publuc AbstractGraph
+	class AdjacencyMatrixGraph: public AbstractGraph
 	{
 	private:
 		GraphEdge** m_AdjancencyMatrix;

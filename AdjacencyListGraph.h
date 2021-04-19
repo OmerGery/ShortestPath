@@ -8,7 +8,7 @@
 namespace AlgoGraph
 {
 
-    class AdjancencyListGraph public AbstractGraph
+    class AdjancencyListGraph: public AbstractGraph
     {
     
         private:
