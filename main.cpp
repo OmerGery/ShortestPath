@@ -25,7 +25,7 @@ bool CheckComandArguments(int argc)
 int main(int argc, char* argv[])
 {
 	string inputFileName;
-	if (CheckComandArguments)
+	if (CheckComandArguments(argc))
 	{
 		inputFileName = argv[1];
 	}

@@ -16,29 +16,32 @@ namespace AlgoGraph
 	{
 		m_NumberOfVertices = i_NumberOfVertex;
 		int size = i_NumberOfVertex+1;
-		m_AdjancencyMatrix = new int* [size];
+		m_AdjancencyMatrix = new GraphEdge* [size];
 		for (int i = 0; i < size; i++)
 		{
-			m_AdjancencyMatrix[i] = new int[size];
+			m_AdjancencyMatrix[i] = new GraphEdge[size];
 		}
 
 		for (int i = 0; i < size; i++)
 		{
 			for (int j = 0; j < size; j++)
 			{
-				m_AdjancencyMatrix[i][j] = INT_MAX;
+				m_AdjancencyMatrix[i][j].SetInfinityWeight();
+				m_AdjancencyMatrix[i][j].SetOutVertex(j);
+				m_AdjancencyMatrix[i][j].SetInVertex(i);
+
 			}
 		}
 	}
 
-	DynamicList<int> AdjacencyMatrixGraph::GetAdjList(int i_OutVertex)
+	DynamicList<GraphEdge> AdjacencyMatrixGraph::GetAdjList(int i_OutVertex)
 	{
-		DynamicList<int> adjacentVerticiesList;
+		DynamicList<GraphEdge> adjacentVerticiesList;
 		for (int i = 0; i < m_NumberOfVertices; i++)
 		{
 			if (isAdjacent(i_OutVertex, i))
 			{
-				adjacentVerticiesList.AddItemToHead(i);
+				adjacentVerticiesList.AddItemToHead(m_AdjancencyMatrix[i_OutVertex][i]);
 			}
 		}
 		return adjacentVerticiesList;
@@ -49,7 +52,7 @@ namespace AlgoGraph
 		if (i_OutVertex > m_NumberOfVertices || i_InVertex > m_NumberOfVertices || i_OutVertex < 1 || i_InVertex < 1)
 		{
 			cout << "Wrong input";
-			exit(1);
+			exit(5);
 		}
 	}
 
@@ -69,7 +72,7 @@ namespace AlgoGraph
 		i_InputFile.seekg(i_fileIndentation, i_InputFile.beg);
 		int inVertex;
 		int outVertex;
-		int weightOfVertex;
+		float weightOfVertex;
 		while (!i_InputFile.eof())
 		{
 			i_InputFile >> outVertex >> inVertex >> weightOfVertex;
@@ -79,26 +82,30 @@ namespace AlgoGraph
 
 	//AdjancencyListGraph::CheckInPutValidity(maybe some variables) {}
 
-	void AdjacencyMatrixGraph::AddEdgeToGraph(int i_OutVertex, int i_InVertex, int i_WeightOfEdge)
+	void AdjacencyMatrixGraph::AddEdgeToGraph(int i_OutVertex, int i_InVertex, float i_WeightOfEdge)
 	{
 		IsEdgeInRange(i_OutVertex, i_InVertex);
-		int existingEdgeWeight = m_AdjancencyMatrix[i_OutVertex][i_InVertex];
-		if (existingEdgeWeight > i_WeightOfEdge)
+		if (m_AdjancencyMatrix[i_OutVertex][i_InVertex].IsWeightInfinity())
 		{
-			m_AdjancencyMatrix[i_OutVertex][i_InVertex] = i_WeightOfEdge;
+			m_AdjancencyMatrix[i_OutVertex][i_InVertex].SetEdgeWeight(i_WeightOfEdge);
+		}
+		else //if is not true means edge is not infinity => edge already exist
+		{
+			cout << "Wrong input";
+			exit(6);
 		}
 	}
 
 	void AdjacencyMatrixGraph::RemoveEdgeFromGraph(int i_OutVertex, int i_InVertex)
 	{
 		IsEdgeInRange(i_OutVertex, i_InVertex);
-		m_AdjancencyMatrix[i_OutVertex][i_InVertex] = INT_MAX;
+		m_AdjancencyMatrix[i_OutVertex][i_InVertex].SetInfinityWeight();
 	}
 
 	bool AdjacencyMatrixGraph::isAdjacent(int i_OutVertex, int i_InVertex)
 	{
 		IsEdgeInRange(i_OutVertex, i_InVertex);
-		return m_AdjancencyMatrix[i_OutVertex][i_InVertex] < INT_MAX;
+		return !(m_AdjancencyMatrix[i_OutVertex][i_InVertex].IsWeightInfinity()); //IsWeightInfinity() returns true if infinity meaning not adjacent
 	}
 
 }

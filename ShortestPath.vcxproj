@@ -143,10 +143,12 @@
     <ClInclude Include="AdjacencyMatrixGraph.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="DynamicList.h" />
+    <ClInclude Include="GraphEdge.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdjacencyListGraph.cpp" />
     <ClCompile Include="AdjacencyMatrixGraph.cpp" />
+    <ClCompile Include="GraphEdge.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

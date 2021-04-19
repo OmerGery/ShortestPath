@@ -2,6 +2,7 @@
 
 #include "DynamicList.h"
 #include "DynamicArray.h"
+#include "GraphEdge.h"
 #include <iostream>
 
 namespace AlgoGraph
@@ -9,7 +10,7 @@ namespace AlgoGraph
 	class AdjacencyMatrixGraph
 	{
 	private:
-		int** m_AdjancencyMatrix;
+		GraphEdge** m_AdjancencyMatrix;
 		int m_NumberOfVertices;
 
 
@@ -20,8 +21,8 @@ namespace AlgoGraph
 		void MakeEmptyGraph(int i_NumberOfVertex);
 		bool isAdjacent(int i_OutVertex, int i_InVertex);
 		void IsEdgeInRange(int i_OutVertex, int i_InVertex);
-		DynamicList<int> GetAdjList(int i_OutVertex);
-		void AddEdgeToGraph(int i_OutVertex, int i_InVertex, int i_WeightOfEdge);
+		DynamicList<GraphEdge> GetAdjList(int i_OutVertex);
+		void AddEdgeToGraph(int i_OutVertex, int i_InVertex, float i_WeightOfEdge);
 		void RemoveEdgeFromGraph(int i_OutVertex, int i_InVertex);
 	};
 
