@@ -2,12 +2,14 @@
 
 #include "DynamicList.h"
 #include "DynamicArray.h"
+#include "AbstractGraph.h"
 #include "GraphEdge.h"
 #include <iostream>
 
 namespace AlgoGraph
 {
-	class AdjacencyMatrixGraph
+	
+	class AdjacencyMatrixGraph publuc AbstractGraph
 	{
 	private:
 		GraphEdge** m_AdjancencyMatrix;

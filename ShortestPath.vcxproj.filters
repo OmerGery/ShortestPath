@@ -30,6 +30,9 @@
     <ClInclude Include="GraphEdge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AbstractGraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdjacencyListGraph.cpp">

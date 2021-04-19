@@ -7,7 +7,6 @@
 using namespace AlgoGraph;
 
 
-
 bool CheckInputFileValidity(string i_inputFileName)
 {
 	ifstream inputFile;

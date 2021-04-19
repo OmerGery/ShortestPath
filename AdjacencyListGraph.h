@@ -3,11 +3,12 @@
 #include "DynamicList.h"
 #include "DynamicArray.h"
 #include "GraphEdge.h"
+#include "AbstractGraph.h"
 
 namespace AlgoGraph
 {
 
-    class AdjancencyListGraph
+    class AdjancencyListGraph public AbstractGraph
     {
     
         private:

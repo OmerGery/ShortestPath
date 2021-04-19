@@ -1,31 +1,19 @@
+#pragma once
 
+#include "DynamicList.h"
+#include "GraphEdge.h"
+#include <iostream>
+using namespace std;
 
 namespace AlgoGraph
 {
 	class AbstractGraph
 	{
 		public:
-            //list
-            AdjancencyListGraph(int i_NumberOfVertex);
-            AdjancencyListGraph(ifstream& i_InputFile, int i_NumberOfVertex, int i_fileIndentation);
-            static AdjancencyListGraph MakeEmptyGraph(int i_NumberOfVertex);
-            bool isAdjacent(int i_OutVertex, int i_InVertex);
-            DynamicList<EdgeInAdjacencyList> GetAdjList(int i_OutVertex);
-            void IsEdgeInRange(int i_OutVertex, int i_InVertex);
-            ~AdjancencyListGraph();
-            void AddEdgeToGraph(int i_OutVertex, int i_InVertex, int i_WeightOfEdge);
-            void RemoveEdgeFromGraph(int i_OutVertex, int i_InVertex);
-            EdgeInAdjacencyList* FindEdgeInGraph(int i_OutVertex, int i_InVertex);
-
-			//matrix
-			AdjacencyMatrixGraph(int i_NumberOfVertex);
-			AdjacencyMatrixGraph(ifstream& i_InputFile, int i_NumberOfVertex, int i_fileIndentation);
-			~AdjacencyMatrixGraph();
-			void MakeEmptyGraph(int i_NumberOfVertex);
-			bool isAdjacent(int i_OutVertex, int i_InVertex);
-			void IsEdgeInRange(int i_OutVertex, int i_InVertex);
-			DynamicList<int> GetAdjList(int i_OutVertex);
-			void AddEdgeToGraph(int i_OutVertex, int i_InVertex, int i_WeightOfEdge);
-			void RemoveEdgeFromGraph(int i_OutVertex, int i_InVertex);
+			virtual bool isAdjacent(int i_OutVertex, int i_InVertex) = 0;
+			virtual void IsEdgeInRange(int i_OutVertex, int i_InVertex) = 0 ;
+			virtual DynamicList<GraphEdge> GetAdjList(int i_OutVertex) = 0 ;
+			virtual void AddEdgeToGraph(int i_OutVertex, int i_InVertex, float i_WeightOfEdge) = 0;
+			virtual void RemoveEdgeFromGraph(int i_OutVertex, int i_InVertex) = 0;
 	};
 }

@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractGraph.h" />
     <ClInclude Include="AdjacencyListGraph.h" />
     <ClInclude Include="AdjacencyMatrixGraph.h" />
     <ClInclude Include="DynamicArray.h" />
