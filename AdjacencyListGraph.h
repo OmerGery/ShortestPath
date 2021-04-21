@@ -13,12 +13,12 @@ namespace AlgoGraph
     
         private:
     
-
         DynamicArray<DynamicList<GraphEdge>> m_AdjancencyList;
         int m_NumberOfVertices;
 
         public:
 
+        void IsSelfLoop(int i_OutVertex, int i_InVertex);
         AdjancencyListGraph(int i_NumberOfVertex);
         AdjancencyListGraph(ifstream& i_InputFile, int i_NumberOfVertex, int i_fileIndentation);
         static AdjancencyListGraph MakeEmptyGraph(int i_NumberOfVertex);

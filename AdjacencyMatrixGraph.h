@@ -13,8 +13,6 @@ namespace AlgoGraph
 	{
 	private:
 		GraphEdge** m_AdjancencyMatrix;
-		int m_NumberOfVertices;
-
 
 	public:
 		AdjacencyMatrixGraph(int i_NumberOfVertex);
@@ -23,6 +21,7 @@ namespace AlgoGraph
 		void MakeEmptyGraph(int i_NumberOfVertex);
 		bool isAdjacent(int i_OutVertex, int i_InVertex);
 		void IsEdgeInRange(int i_OutVertex, int i_InVertex);
+		void IsSelfLoop(int i_OutVertex, int i_InVertex);
 		DynamicList<GraphEdge> GetAdjList(int i_OutVertex);
 		void AddEdgeToGraph(int i_OutVertex, int i_InVertex, float i_WeightOfEdge);
 		void RemoveEdgeFromGraph(int i_OutVertex, int i_InVertex);

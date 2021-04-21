@@ -31,13 +31,14 @@ namespace AlgoGraph
 
     AdjancencyListGraph::AdjancencyListGraph(ifstream& i_InputFile, int i_NumberOfVertex, int i_fileIndentation) : m_AdjancencyList(i_NumberOfVertex + 1), m_NumberOfVertices(i_NumberOfVertex)
     {
+        m_NumberOfVertices = i_NumberOfVertex;
         i_InputFile.seekg(i_fileIndentation, i_InputFile.beg);
         int inVertex;
         int outVertex;
         float weightOfVertex;
         while (!i_InputFile.eof())
         {
-            i_InputFile >> outVertex >> inVertex >> weightOfVertex;
+            i_InputFile >> outVertex >> inVertex >> weightOfVertex;        
             AddEdgeToGraph(outVertex, inVertex, weightOfVertex);
         }
     }
@@ -56,10 +57,21 @@ namespace AlgoGraph
         }
 
     }
+    void AdjancencyListGraph::IsSelfLoop(int i_OutVertex, int i_InVertex)
+    {
+        if (i_OutVertex == i_InVertex)
+        {
+            cout << "Wrong input";
+            exit(3);
+        }
+
+    }
+
 
 
     void AdjancencyListGraph::AddEdgeToGraph(int i_OutVertex, int i_InVertex, float i_WeightOfEdge)
     {
+        IsSelfLoop(i_OutVertex,i_InVertex);
         IsEdgeInRange(i_OutVertex, i_InVertex);
         GraphEdge* existingEdge = FindEdgeInGraph(i_OutVertex, i_InVertex);
         if (existingEdge != nullptr)

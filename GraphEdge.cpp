@@ -34,6 +34,10 @@ namespace AlgoGraph
 		}
 		else return true;
 	}
+	EdgeWeight GraphEdge::GetEdgeWeight()
+	{
+		return m_Weight;
+	}
 
 	bool GraphEdge::IsWeightInfinity()
 	{

@@ -1,4 +1,7 @@
 #include "AdjacencyListGraph.h"
+#include "AbstractGraph.h"
+#include "ConstTypes.h"
+#include "GraphAlgorithms.h"
 #include "DynamicArray.h"
 #include "AdjacencyMatrixGraph.h"
 #include <iostream>
@@ -44,10 +47,11 @@ int main(int argc, char* argv[])
 	int numberOfVertex;
 	int pathStartingVertex;
 	int pathEndVertex;
+	// we know that the file is valid
 	inputFile >> numberOfVertex;
 	inputFile >> pathStartingVertex;
 	inputFile >> pathEndVertex;
-	int fileINdentation = inputFile.tellg();
+	int fileINdentation =(int) inputFile.tellg();
 	AdjancencyListGraph ListGraph(inputFile, numberOfVertex, fileINdentation);
 	AdjacencyMatrixGraph MatrixGraph(inputFile, numberOfVertex, fileINdentation);
 	inputFile.close();

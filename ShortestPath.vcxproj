@@ -142,13 +142,16 @@
     <ClInclude Include="AbstractGraph.h" />
     <ClInclude Include="AdjacencyListGraph.h" />
     <ClInclude Include="AdjacencyMatrixGraph.h" />
+    <ClInclude Include="ConstTypes.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="DynamicList.h" />
+    <ClInclude Include="GraphAlgorithms.h" />
     <ClInclude Include="GraphEdge.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdjacencyListGraph.cpp" />
     <ClCompile Include="AdjacencyMatrixGraph.cpp" />
+    <ClCompile Include="GraphAlgorithms.cpp" />
     <ClCompile Include="GraphEdge.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

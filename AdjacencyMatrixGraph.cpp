@@ -9,11 +9,13 @@ namespace AlgoGraph
 
 	AdjacencyMatrixGraph::AdjacencyMatrixGraph(int i_NumberOfVertex)
 	{
+		m_NumberOfVertices = i_NumberOfVertex;
 		MakeEmptyGraph(i_NumberOfVertex);
 	}
 
 	void AdjacencyMatrixGraph::MakeEmptyGraph(int i_NumberOfVertex)
 	{
+
 		m_NumberOfVertices = i_NumberOfVertex;
 		int size = i_NumberOfVertex+1;
 		m_AdjancencyMatrix = new GraphEdge* [size];
@@ -33,7 +35,14 @@ namespace AlgoGraph
 			}
 		}
 	}
-
+	void AdjacencyMatrixGraph::IsSelfLoop(int i_OutVertex, int i_InVertex)
+	{
+		if (i_OutVertex==i_InVertex)
+		{
+			cout << "Wrong input";
+			exit(5);
+		}
+	}
 	DynamicList<GraphEdge> AdjacencyMatrixGraph::GetAdjList(int i_OutVertex)
 	{
 		DynamicList<GraphEdge> adjacentVerticiesList;

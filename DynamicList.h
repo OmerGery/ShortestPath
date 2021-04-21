@@ -12,7 +12,7 @@ namespace AlgoGraph {
 				Item*	next;
 				Item*	prev;
 			};
-
+			int size;
 			Item* head;
 			Item* tail;
 
@@ -20,6 +20,7 @@ namespace AlgoGraph {
 		public:
 		DynamicList() : head(nullptr), tail(nullptr)
 		{
+			size = 0;
 		// start with an empty list (null head & tail)
 		}
 		~DynamicList()
@@ -31,7 +32,10 @@ namespace AlgoGraph {
 				delete temp;
 			}
 		}
-
+		int getSize()
+		{
+			return size;
+		}
 		DynamicList(const DynamicList& other) : DynamicList()
 		{
 			// copy entire contents of other list to this one
@@ -42,8 +46,10 @@ namespace AlgoGraph {
 			}
 		}
 
+
 		void AddItemToHead(T value)
 		{
+			size++;
 			// create new item and set as head of list
 			Item* item = new Item;
 			item->value = value;
@@ -57,6 +63,7 @@ namespace AlgoGraph {
 		}
 		void AddItemToTail(T value)
 		{
+			size++;
 			// create new item and set as tail of list
 			Item* item = new Item;
 			item->value = value;
@@ -155,15 +162,17 @@ namespace AlgoGraph {
 		//Not in use for us but dont understand how it works.
 		T& GetItemByIndex(int i_IndexOfItemInList)
 		{
-			return const_cast<int&>(getItem(i_IndexOfItemInList));
+			return const_cast<T&>(getItem(i_IndexOfItemInList));
 		}
-
+		
 		const T& getItem(int idx) const
 		{
 			// scan the list and reutrn item at index idx
 			Item* temp = head;
 			for (int i = 0; i < idx; ++i)
+			{
 				temp = temp->next;
+			}
 			return temp->value;
 		}
 	};
