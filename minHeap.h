@@ -1,12 +1,12 @@
-#include "Tav.h"
-#include "hufNode.h"
-
-namespace huf
+#pragma once 
+#include "ConstTypes.h"
+#include "GraphEdge.h"
+namespace AlgoGraph
 {
 	class minHeap
 	{
 		private:
-			hufNode** heapArray;
+		EdgeWeight** heapArray;
 			int maxSize;
 			int heapSize;
 			int allocated;
@@ -14,15 +14,15 @@ namespace huf
 
 		public:
 			minHeap(int capacity);
-			minHeap(hufNode* tav[], int size);
+			minHeap(EdgeWeight* tav[], int size);
 			~minHeap();
 			static int Left(int node);
 			static int Right(int left);
 			static int Parent(int node);
 			void FixHeap(int node);
-			hufNode* Min();
-			hufNode* DeleteMin();
-			void Insert(hufNode* item);
+			EdgeWeight* Min();
+			EdgeWeight* DeleteMin();
+			void Insert(EdgeWeight* item);
 			bool isEmpty();
 			void make_empty();
 

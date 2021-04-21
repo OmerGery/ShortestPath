@@ -147,6 +147,7 @@
     <ClInclude Include="DynamicList.h" />
     <ClInclude Include="GraphAlgorithms.h" />
     <ClInclude Include="GraphEdge.h" />
+    <ClInclude Include="minHeap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdjacencyListGraph.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="GraphAlgorithms.cpp" />
     <ClCompile Include="GraphEdge.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="minHeap.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

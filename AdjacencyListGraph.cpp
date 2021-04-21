@@ -29,7 +29,7 @@ namespace AlgoGraph
     }
 
 
-    AdjancencyListGraph::AdjancencyListGraph(ifstream& i_InputFile, int i_NumberOfVertex, int i_fileIndentation) : m_AdjancencyList(i_NumberOfVertex + 1), m_NumberOfVertices(i_NumberOfVertex)
+    AdjancencyListGraph::AdjancencyListGraph(ifstream& i_InputFile, int i_NumberOfVertex, int i_fileIndentation) : m_AdjancencyList(i_NumberOfVertex + 1)
     {
         m_NumberOfVertices = i_NumberOfVertex;
         i_InputFile.seekg(i_fileIndentation, i_InputFile.beg);
@@ -82,7 +82,7 @@ namespace AlgoGraph
         else
         {
             GraphEdge EdgeToBeAdded(i_OutVertex, i_InVertex, i_WeightOfEdge);
-            m_AdjancencyList[i_OutVertex].AddItemToHead(EdgeToBeAdded);
+            m_AdjancencyList[i_OutVertex].AddItemToTail(EdgeToBeAdded);
         }
     }
 

@@ -39,6 +39,9 @@
     <ClInclude Include="ConstTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="minHeap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdjacencyListGraph.cpp">
@@ -54,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GraphAlgorithms.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minHeap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

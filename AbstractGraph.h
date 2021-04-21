@@ -11,6 +11,7 @@ namespace AlgoGraph
 	{
 		protected:
 		int m_NumberOfVertices;
+
 		public:
 			virtual bool isAdjacent(int i_OutVertex, int i_InVertex) = 0;
 			virtual void IsEdgeInRange(int i_OutVertex, int i_InVertex) = 0 ;

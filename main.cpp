@@ -55,8 +55,15 @@ int main(int argc, char* argv[])
 	 
 	AdjancencyListGraph ListGraph(inputFile, numberOfVertex, fileINdentation);
 	AdjacencyMatrixGraph MatrixGraph(inputFile, numberOfVertex, fileINdentation);
-	float x;
-	Result path = GraphAlgorithms::BellmanFord(&ListGraph,pathStartingVertex,pathEndVertex,x);
+	
+	float matrixpath;
+	float listpath;
+
+	Result PathOfAdjancencyListGraph = GraphAlgorithms::BellmanFord(&ListGraph,pathStartingVertex,pathEndVertex, listpath);
+	Result PathOfAdjacencyMatrixGraph = GraphAlgorithms::BellmanFord(&ListGraph, pathStartingVertex, pathEndVertex, matrixpath);
+
+	cout << "List Path Length: " << listpath << endl;
+	cout << "Matrix Path Length: " << matrixpath << endl;
 	inputFile.close();
 	return 0;
 }

@@ -14,7 +14,6 @@ namespace AlgoGraph
         private:
     
         DynamicArray<DynamicList<GraphEdge>> m_AdjancencyList;
-        int m_NumberOfVertices;
 
         public:
 

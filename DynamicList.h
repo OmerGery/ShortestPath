@@ -63,17 +63,25 @@ namespace AlgoGraph {
 		}
 		void AddItemToTail(T value)
 		{
+
+
 			size++;
 			// create new item and set as tail of list
 			Item* item = new Item;
 			item->value = value;
 			item->next = nullptr;
-			item->prev = tail;
-			tail = item;
-
-			// handle empty list
 			if (head == nullptr)
-				head = tail;
+			{
+				head = tail = item;
+				item->prev = nullptr;
+			}
+			else
+			{
+				item->prev = tail;
+				tail->next = item;
+				tail = item;
+			}
+			
 		}
 
 		T DeleteItemFromHead()
