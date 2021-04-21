@@ -28,6 +28,7 @@ namespace AlgoGraph
 		}
 		else return false;
 	}
+	
 	void GraphAlgorithms::Init(int i_StartVertex, int i_AmountOfVertices)
 	{
 		for (int i = 0; i <= i_AmountOfVertices; i++)
@@ -39,6 +40,32 @@ namespace AlgoGraph
 		}
 		s_DegreesArray[i_StartVertex].infinity = false;
 		s_DegreesArray[i_StartVertex].weight = 0;
+	}
+	float GraphAlgorithms::DijkstraHeap(AbstractGraph* i_Graph, int i_StartVertex, int i_EndVertex, float& o_ShortestPath)
+	{
+		
+		int N = i_Graph->GetAmountOfVertices();
+		Init(i_StartVertex, N);
+		minHeap Q(s_DegreesArray,N);
+		while (!Q.isEmpty())
+		{
+			VertexDV u = Q.DeleteMin();
+			DynamicList<GraphEdge> currentVertexAdjList = i_Graph->GetAdjList(u.Vertex);
+			int AmountOfNeighbors = currentVertexAdjList.getSize();
+			for (int j = 0; j < AmountOfNeighbors; j++)
+			{
+				GraphEdge uTov = currentVertexAdjList.GetItemByIndex(j);
+				Weight weightUV = uTov.GetEdgeWeight();
+				int v = uTov.GetInVertex();
+				if (Relax(u.Vertex, v, weightUV))
+				{
+					// DECREASE KEYYYY
+				}
+			}
+			
+		}
+
+		return 5;
 	}
 	Result GraphAlgorithms::BellmanFord(AbstractGraph* i_Graph, int i_StartVertex, int i_EndVertex, float& o_ShortestPath)
 	{

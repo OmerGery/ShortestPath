@@ -1,6 +1,7 @@
 #pragma once 
 #include "ConstTypes.h"
 #include "GraphEdge.h"
+#include "DynamicArray.h"
 namespace AlgoGraph
 {
 	class minHeap
@@ -14,7 +15,7 @@ namespace AlgoGraph
 
 		public:
 			minHeap(int capacity);
-			minHeap(Weight Degrees[], int size);
+			minHeap(DynamicArray<Weight> Degrees, int size);
 			~minHeap();
 			static int Left(int node);
 			static int Right(int left);
