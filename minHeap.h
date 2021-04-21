@@ -6,7 +6,7 @@ namespace AlgoGraph
 	class minHeap
 	{
 		private:
-			Weight* heapArray;
+			VertexDV* heapArray;
 			int maxSize;
 			int heapSize;
 			int allocated;
@@ -20,9 +20,9 @@ namespace AlgoGraph
 			static int Right(int left);
 			static int Parent(int node);
 			void FixHeap(int node);
-			Weight Min();
-			Weight DeleteMin();
-			void Insert(Weight item);
+			VertexDV Min();
+			VertexDV DeleteMin();
+			void Insert(VertexDV item);
 			bool isEmpty();
 			void make_empty();
 

@@ -1,10 +1,6 @@
 #pragma once
 #include "ConstTypes.h"
-struct Weight
-{
-	float weight;
-	bool infinity;
-};
+
 namespace AlgoGraph {
 	class GraphEdge
 	{

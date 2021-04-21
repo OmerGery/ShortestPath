@@ -5,7 +5,7 @@ namespace AlgoGraph
 {
 	minHeap::minHeap(int capacity)
 	{
-		heapArray = new Weight[capacity];
+		heapArray = new VertexDV[capacity];
 		maxSize = capacity;
 		heapSize = 0;
 		allocated = 1; //allocation has been made here- only give is size of array from user
@@ -16,7 +16,11 @@ namespace AlgoGraph
 	{
 		heapSize = size;
 		maxSize = size;
-		heapArray = Degrees;
+		for (int i = 1; i <= size; i++)
+		{
+			heapArray[i].VertexWeight= Degrees[i];
+			heapArray[i].Vertex = i;
+		}
 		allocated = 0; //no allocation made- array is given from outer data
 		int n = (size / 2) - 1;
 		for (int i = n; i >= 0; i--)
@@ -41,9 +45,9 @@ namespace AlgoGraph
 		return ((i - 1) / 2);
 	}
 
-	void Swap(Weight* a, Weight* b)
+	void Swap(VertexDV* a, VertexDV* b)
 	{
-		Weight temp = *a;
+		VertexDV temp = *a;
 		*a = *b;
 		*b = temp;
 	}
@@ -54,10 +58,10 @@ namespace AlgoGraph
 		int left = Left(i);
 		int right = Right(i);
 
-		if (left < heapSize && heapArray[left].weight < heapArray[i].weight)
+		if (left < heapSize && heapArray[left].VertexWeight.weight < heapArray[i].VertexWeight.weight)
 			min = left;
 		else min = i;
-		if (right < heapSize && heapArray[right].weight < heapArray[min].weight)
+		if (right < heapSize && heapArray[right].VertexWeight.weight < heapArray[min].VertexWeight.weight)
 			min = right;
 
 		if (min != i)
@@ -66,17 +70,17 @@ namespace AlgoGraph
 			FixHeap(min);
 		}
 	}
-	Weight minHeap::Min()
+	VertexDV minHeap::Min()
 	{
 		return heapArray[0];
 	}
-	Weight minHeap::DeleteMin()
+	VertexDV minHeap::DeleteMin()
 	{
 		if (heapSize < 1)
 			throw "There is no min to return because the heap is empty";
 		else
 		{
-			Weight min = heapArray[0];
+			VertexDV min = heapArray[0];
 			heapSize--;
 			heapArray[0] = heapArray[heapSize];
 			FixHeap(0);
@@ -84,15 +88,20 @@ namespace AlgoGraph
 		}
 	}
 
-	void minHeap::Insert(Weight item)
+	void minHeap::Insert(VertexDV item)
 	{
 		if (heapSize == maxSize)
 			throw "The heap is full, cant insert more";
+		if (item.VertexWeight.infinity)
+		{
+			heapArray[heapSize] = item;
+			heapSize++;
+		}
 		else
 		{
 			int i = heapSize;
 			heapSize++;
-			while ((i > 0) && (heapArray[Parent(i)].weight > item.weight))
+			while ((i > 0) && (heapArray[Parent(i)].VertexWeight.weight > item.VertexWeight.weight))
 			{
 				heapArray[i] = heapArray[Parent(i)];
 				i = Parent(i);
