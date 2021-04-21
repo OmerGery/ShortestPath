@@ -1,6 +1,6 @@
 #pragma once
 #include "ConstTypes.h"
-struct EdgeWeight
+struct Weight
 {
 	float weight;
 	bool infinity;
@@ -9,7 +9,7 @@ namespace AlgoGraph {
 	class GraphEdge
 	{
 		private:
-			EdgeWeight m_Weight;
+			Weight m_Weight;
 			int m_InVertex;
 			int m_OutVertex;
 
@@ -18,7 +18,7 @@ namespace AlgoGraph {
 			GraphEdge(int o_OutVertex,int o_InVertex, float o_edgeWeight);
 			GraphEdge(int o_OutVertex, int o_InVertex);
 			bool GetEdgeWeight(float& o_weight);
-			EdgeWeight GetEdgeWeight();
+			Weight GetEdgeWeight();
 			bool IsWeightInfinity();
 			void SetEdgeWeight(float o_weight);
 			void SetInfinityWeight();

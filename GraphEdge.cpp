@@ -34,7 +34,7 @@ namespace AlgoGraph
 		}
 		else return true;
 	}
-	EdgeWeight GraphEdge::GetEdgeWeight()
+	Weight GraphEdge::GetEdgeWeight()
 	{
 		return m_Weight;
 	}

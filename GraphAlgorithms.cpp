@@ -4,15 +4,15 @@
 
 namespace AlgoGraph
 {
-	DynamicArray<EdgeWeight> GraphAlgorithms:: s_DegreesArray(1);
+	DynamicArray<Weight> GraphAlgorithms:: s_DegreesArray(1);
 	DynamicArray<int> GraphAlgorithms:: s_parentArray(1);
-	bool GraphAlgorithms::Relax(int i_OutVertex, int i_InVertex, EdgeWeight weightUV )
+	bool GraphAlgorithms::Relax(int i_OutVertex, int i_InVertex, Weight weightUV )
 	{
 		
 		if (weightUV.infinity || s_DegreesArray[i_OutVertex].infinity)
 			return false;
-		EdgeWeight* dV = &(s_DegreesArray[i_InVertex]);
-		EdgeWeight* dU = &(s_DegreesArray[i_OutVertex]);
+		Weight* dV = &(s_DegreesArray[i_InVertex]);
+		Weight* dU = &(s_DegreesArray[i_OutVertex]);
 		if (dV->infinity)
 		{
 			dV->infinity = false;
@@ -33,7 +33,7 @@ namespace AlgoGraph
 		for (int i = 0; i <= i_AmountOfVertices; i++)
 		{
 			s_parentArray.push_back(NO_PARENT);
-			EdgeWeight initialWeight;
+			Weight initialWeight;
 			initialWeight.infinity = true;
 			s_DegreesArray.push_back(initialWeight);
 		}
@@ -53,7 +53,7 @@ namespace AlgoGraph
 				for (int j = 0; j < AmountOfNeighbors; j++)
 				{
 					GraphEdge uTov = currentVertexAdjList.GetItemByIndex(j);
-					EdgeWeight weightUV = uTov.GetEdgeWeight();
+					Weight weightUV = uTov.GetEdgeWeight();
 					int v = uTov.GetInVertex();
 					Relax(u, v, weightUV);
 				}
@@ -66,7 +66,7 @@ namespace AlgoGraph
 			for (int j = 0; j < AmountOfNeighbors; j++)
 			{
 				GraphEdge uTov = currentVertexAdjList.GetItemByIndex(j);
-				EdgeWeight weightUV = uTov.GetEdgeWeight();
+				Weight weightUV = uTov.GetEdgeWeight();
 				int v = uTov.GetInVertex();
 				if (Relax(u, v, weightUV))
 					return Result::NEGATIVE_CYCLE;//static_cast<int>(Result::NEGATIVE_CYCLE); // Negative cycle

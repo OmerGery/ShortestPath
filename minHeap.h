@@ -6,7 +6,7 @@ namespace AlgoGraph
 	class minHeap
 	{
 		private:
-		EdgeWeight** heapArray;
+			Weight* heapArray;
 			int maxSize;
 			int heapSize;
 			int allocated;
@@ -14,15 +14,15 @@ namespace AlgoGraph
 
 		public:
 			minHeap(int capacity);
-			minHeap(EdgeWeight* tav[], int size);
+			minHeap(Weight Degrees[], int size);
 			~minHeap();
 			static int Left(int node);
 			static int Right(int left);
 			static int Parent(int node);
 			void FixHeap(int node);
-			EdgeWeight* Min();
-			EdgeWeight* DeleteMin();
-			void Insert(EdgeWeight* item);
+			Weight Min();
+			Weight DeleteMin();
+			void Insert(Weight item);
 			bool isEmpty();
 			void make_empty();
 
