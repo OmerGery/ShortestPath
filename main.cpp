@@ -52,10 +52,12 @@ int main(int argc, char* argv[])
 	inputFile >> pathStartingVertex;
 	inputFile >> pathEndVertex;
 	int fileINdentation =(int) inputFile.tellg();
+	 
 	AdjancencyListGraph ListGraph(inputFile, numberOfVertex, fileINdentation);
 	AdjacencyMatrixGraph MatrixGraph(inputFile, numberOfVertex, fileINdentation);
+	float x;
+	Result path = GraphAlgorithms::BellmanFord(&ListGraph,pathStartingVertex,pathEndVertex,x);
 	inputFile.close();
-	
 	return 0;
 }
 
