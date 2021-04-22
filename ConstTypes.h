@@ -8,6 +8,13 @@ namespace AlgoGraph
 		NEGATIVE_CYCLE = 1,
 		INFINITY_PATH = 2,
 	};
+
+	enum class QueueType
+	{
+		MinHeap = 0,
+		Array = 1,
+	};
+
 	struct Weight
 	{
 		float weight;

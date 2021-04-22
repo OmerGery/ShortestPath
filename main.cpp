@@ -4,6 +4,8 @@
 #include "GraphAlgorithms.h"
 #include "DynamicArray.h"
 #include "AdjacencyMatrixGraph.h"
+#include "minHeap.h"
+#include "AbstractPriorityQueue.h"
 #include <iostream>
 #include <fstream>
 
@@ -61,6 +63,21 @@ int main(int argc, char* argv[])
 
 	Result PathOfAdjancencyListGraph = GraphAlgorithms::BellmanFord(&ListGraph,pathStartingVertex,pathEndVertex, listpath);
 	Result PathOfAdjacencyMatrixGraph = GraphAlgorithms::BellmanFord(&ListGraph, pathStartingVertex, pathEndVertex, matrixpath);
+	
+	minHeap* heapQueue = nullptr;
+
+	/// send Dijkstra(heapQueue, .....)
+
+	/*
+	minArray* arrayQueue = nullptr;
+
+	/// send Dijkstra(arrayQueue, .....)
+	*/
+
+	//this way Dijkstra algorithem only implemented once and just uses the queue it is given
+
+
+
 
 	cout << "List Path Length: " << listpath << endl;
 	cout << "Matrix Path Length: " << matrixpath << endl;

@@ -2,9 +2,10 @@
 #include "ConstTypes.h"
 #include "GraphEdge.h"
 #include "DynamicArray.h"
+#include "AbstractPriorityQueue.h"
 namespace AlgoGraph
 {
-	class minHeap
+	class minHeap : public PriorityQueue
 	{
 		private:
 			DynamicArray<VertexDV*> AccessArray;
@@ -23,10 +24,12 @@ namespace AlgoGraph
 			static int Parent(int node);
 			void FixHeap(int node);
 			VertexDV Min();
-			VertexDV DeleteMin();
 			void Insert(VertexDV item);
 			bool isEmpty();
 			void make_empty();
+			void DcreaseKey(int i_Vertex);
+			VertexDV DeleteMin();
+
 
 	};
 }

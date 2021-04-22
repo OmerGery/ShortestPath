@@ -122,4 +122,10 @@ namespace AlgoGraph
 	{
 		heapSize = 0;
 	}
+
+
+	void minHeap::DcreaseKey(int i_Vertex)
+	{
+
+	}
 }

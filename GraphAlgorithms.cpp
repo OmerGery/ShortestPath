@@ -1,11 +1,15 @@
 #include "GraphAlgorithms.h"
 #include "ConstTypes.h"
 #include "DynamicArray.h"
+#include "AbstractPriorityQueue.h"
 
 namespace AlgoGraph
 {
+	//Static Variables Initialization
 	DynamicArray<Weight> GraphAlgorithms:: s_DegreesArray(1);
 	DynamicArray<int> GraphAlgorithms:: s_parentArray(1);
+
+
 	bool GraphAlgorithms::Relax(int i_OutVertex, int i_InVertex, Weight weightUV )
 	{
 		
@@ -41,38 +45,10 @@ namespace AlgoGraph
 		s_DegreesArray[i_StartVertex].infinity = false;
 		s_DegreesArray[i_StartVertex].weight = 0;
 	}
-	float GraphAlgorithms::DijkstraHeap(AbstractGraph* i_Graph, int i_StartVertex, int i_EndVertex, float& o_ShortestPath)
+
+
+	void GraphAlgorithms::RelaxRunnerBF(AbstractGraph* i_Graph, int N)
 	{
-		
-		int N = i_Graph->GetAmountOfVertices();
-		Init(i_StartVertex, N);
-		minHeap Q(s_DegreesArray,N);
-		while (!Q.isEmpty())
-		{
-			VertexDV u = Q.DeleteMin();
-			DynamicList<GraphEdge> currentVertexAdjList = i_Graph->GetAdjList(u.Vertex);
-			int AmountOfNeighbors = currentVertexAdjList.getSize();
-			for (int j = 0; j < AmountOfNeighbors; j++)
-			{
-				GraphEdge uTov = currentVertexAdjList.GetItemByIndex(j);
-				Weight weightUV = uTov.GetEdgeWeight();
-				int v = uTov.GetInVertex();
-				if (Relax(u.Vertex, v, weightUV))
-				{
-					// DECREASE KEYYYY
-				}
-			}
-			
-		}
-
-		return 5;
-	}
-
-
-	Result GraphAlgorithms::BellmanFord(AbstractGraph* i_Graph, int i_StartVertex, int i_EndVertex, float& o_ShortestPath)
-	{
-		int N = i_Graph->GetAmountOfVertices();
-		Init(i_StartVertex, N);
 		for (int i = 1; i <= N - 1; i++)
 		{
 			for (int u = 1; u <= N; u++)
@@ -88,6 +64,14 @@ namespace AlgoGraph
 				}
 			}
 		}
+	}
+
+	Result GraphAlgorithms::BellmanFord(AbstractGraph* i_Graph, int i_StartVertex, int i_EndVertex, float& o_ShortestPath)
+	{
+		int N = i_Graph->GetAmountOfVertices();
+		Init(i_StartVertex, N);
+		RelaxRunnerBF(i_Graph, N); //N-1 iterations
+
 		for (int u = 1; u <= N; u++)
 		{
 			DynamicList<GraphEdge> currentVertexAdjList = i_Graph->GetAdjList(u);
@@ -101,13 +85,66 @@ namespace AlgoGraph
 					return Result::NEGATIVE_CYCLE;//static_cast<int>(Result::NEGATIVE_CYCLE); // Negative cycle
 			}
 		}
+
 		if (s_DegreesArray[i_EndVertex].infinity)
 		{
 			return Result::INFINITY_PATH;
 		}
+
 		o_ShortestPath = s_DegreesArray[i_EndVertex].weight;
 		return Result::SUCCESS;
 	}
 
 
+
+	QueueType GraphAlgorithms::CheckType(PriorityQueue* Q)
+	{
+		minHeap* heap = dynamic_cast<minHeap*>(Q);
+		if (heap != nullptr)
+		{
+			return QueueType::MinHeap;
+		}
+		else return QueueType::Array;
+	}
+
+	void GraphAlgorithms::RelaxRunnerDijkstra(AbstractGraph* i_Graph, VertexDV u)
+	{
+
+		DynamicList<GraphEdge> currentVertexAdjList = i_Graph->GetAdjList(u.Vertex);
+		int AmountOfNeighbors = currentVertexAdjList.getSize();
+		for (int j = 0; j < AmountOfNeighbors; j++)
+		{
+			GraphEdge uTov = currentVertexAdjList.GetItemByIndex(j);
+			Weight weightUV = uTov.GetEdgeWeight();
+			int v = uTov.GetInVertex();
+			if (Relax(u.Vertex, v, weightUV))
+			{
+				// Q->DecreaseKey();
+			}
+		}
+	}
+
+	float GraphAlgorithms::Dijkstra(PriorityQueue* Q ,AbstractGraph* i_Graph, int i_StartVertex, int i_EndVertex, float& o_ShortestPath)
+	{
+
+		int N = i_Graph->GetAmountOfVertices();
+		Init(i_StartVertex, N);
+		
+		if (CheckType(Q) == QueueType::MinHeap)
+		{
+			Q = new minHeap(s_DegreesArray, N);
+		}
+		else
+		{
+			/// Q = new minArray() .... initialization for priority Queue with array
+		}
+		
+		while (!Q->isEmpty())
+		{
+			VertexDV u = Q->DeleteMin();
+			RelaxRunnerDijkstra(i_Graph, u);
+		}
+
+		return 5;
+	}
 }
