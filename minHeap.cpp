@@ -12,7 +12,7 @@ namespace AlgoGraph
 	}
 
 	//Building minimum heap with floyd algorithem
-	minHeap::minHeap(DynamicArray<Weight> Degrees, int size)
+	minHeap::minHeap(DynamicArray<Weight> Degrees, int size) : AccessArray(size)
 	{
 		heapSize = size;
 		maxSize = size;
@@ -20,6 +20,7 @@ namespace AlgoGraph
 		{
 			heapArray[i].VertexWeight = Degrees[i+1];
 			heapArray[i].Vertex = i+1;
+			AccessArray[i] = heapArray + i; /////NOT GOOD YET NEED TO MAKE IT FOLLOES OVER CHANGES!!!!!!
 		}
 		allocated = 0; //no allocation made- array is given from outer data
 		int n = (size / 2) - 1;
@@ -58,10 +59,11 @@ namespace AlgoGraph
 		int left = Left(i);
 		int right = Right(i);
 
-		if (left < heapSize && heapArray[left].VertexWeight.weight < heapArray[i].VertexWeight.weight)
+
+		if (left < heapSize && heapArray[left] < heapArray[i])
 			min = left;
 		else min = i;
-		if (right < heapSize && heapArray[right].VertexWeight.weight < heapArray[min].VertexWeight.weight)
+		if (right < heapSize && heapArray[right] < heapArray[min])
 			min = right;
 
 		if (min != i)

@@ -12,11 +12,40 @@ namespace AlgoGraph
 	{
 		float weight;
 		bool infinity;
+
+		bool operator <(const Weight& other)
+		{
+			if(this->infinity && other.infinity) //both inf
+			{
+			return false;
+			}
+			else if (this->infinity && !other.infinity) // inf < not inf ---> false cause bigger
+			{
+				return false;
+			}
+			else if (!this->infinity && other.infinity) // not inf < inf ---> true cause smaller
+			{
+				return true;
+			}
+			
+			else
+			{
+				return this->weight < other.weight;
+			}
+		}
+
 	};
+
 	struct VertexDV
 	{
 		Weight VertexWeight;
 		int Vertex;
+
+		bool operator <(const VertexDV& other)
+		{
+			return this->VertexWeight < other.VertexWeight;
+		}
+		
 	};
 	
 }

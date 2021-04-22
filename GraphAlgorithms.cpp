@@ -67,6 +67,8 @@ namespace AlgoGraph
 
 		return 5;
 	}
+
+
 	Result GraphAlgorithms::BellmanFord(AbstractGraph* i_Graph, int i_StartVertex, int i_EndVertex, float& o_ShortestPath)
 	{
 		int N = i_Graph->GetAmountOfVertices();
@@ -106,4 +108,6 @@ namespace AlgoGraph
 		o_ShortestPath = s_DegreesArray[i_EndVertex].weight;
 		return Result::SUCCESS;
 	}
+
+
 }

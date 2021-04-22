@@ -7,6 +7,7 @@ namespace AlgoGraph
 	class minHeap
 	{
 		private:
+			DynamicArray<VertexDV*> AccessArray;
 			VertexDV* heapArray;
 			int maxSize;
 			int heapSize;
