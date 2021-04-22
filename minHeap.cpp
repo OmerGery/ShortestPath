@@ -12,17 +12,19 @@ namespace AlgoGraph
 	}
 
 	//Building minimum heap with floyd algorithem
-	minHeap::minHeap(DynamicArray<Weight> Degrees, int size) : AccessArray(size)
+	minHeap::minHeap(DynamicArray<Weight> Degrees, int size) : AccessArray(size+1)
 	{
 		heapSize = size;
 		maxSize = size;
+		heapArray = new VertexDV[size];
 		for (int i = 0; i < size; i++)
 		{
 			heapArray[i].VertexWeight = Degrees[i+1];
 			heapArray[i].Vertex = i+1;
-			AccessArray[i] = heapArray + i; /////NOT GOOD YET NEED TO MAKE IT FOLLOES OVER CHANGES!!!!!!
+			AccessArray[i + 1] = i; //places the index location of vertex in heapArray
 		}
-		allocated = 0; //no allocation made- array is given from outer data
+
+		allocated = 1; //no allocation made- array is given from outer data
 		int n = (size / 2) - 1;
 		for (int i = n; i >= 0; i--)
 			FixHeap(i);
@@ -52,6 +54,12 @@ namespace AlgoGraph
 		*a = *b;
 		*b = temp;
 	}
+	void Swap(int* a, int* b)
+	{
+		int temp = *a;
+		*a = *b;
+		*b = temp;
+	}
 
 	void minHeap::FixHeap(int i)
 	{
@@ -69,9 +77,28 @@ namespace AlgoGraph
 		if (min != i)
 		{
 			Swap(heapArray+i, heapArray+min);
+			Swap(&AccessArray[i], &AccessArray[min]);
 			FixHeap(min);
 		}
 	}
+
+	// Decreases value of VertexDecree located in position i in heapArray.
+	// assumming that  newDegree is smaller than the old one.
+	void minHeap::decreaseKey(int Vertex, float newDegree)
+	{
+		int i = AccessArray[Vertex];
+		heapArray[i].VertexWeight.infinity = false;
+		heapArray[i].VertexWeight.weight = newDegree;
+		while (i != 0 && heapArray[i] < heapArray[Parent(i)])
+		{
+			Swap(&heapArray[i], &heapArray[Parent(i)]);
+			int accessParent = heapArray[Parent(i)].Vertex;
+			Swap(&AccessArray[Vertex], &AccessArray[accessParent]);
+			i = Parent(i);
+		}
+	}
+
+
 	VertexDV minHeap::Min()
 	{
 		return heapArray[0];
@@ -123,9 +150,4 @@ namespace AlgoGraph
 		heapSize = 0;
 	}
 
-
-	void minHeap::DcreaseKey(int i_Vertex)
-	{
-
-	}
 }

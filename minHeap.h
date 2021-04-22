@@ -3,12 +3,12 @@
 #include "GraphEdge.h"
 #include "DynamicArray.h"
 #include "AbstractPriorityQueue.h"
-namespace AlgoGraph
+namespace AlgoGraph 
 {
 	class minHeap : public PriorityQueue
 	{
 		private:
-			DynamicArray<VertexDV*> AccessArray;
+			DynamicArray<int> AccessArray;
 			VertexDV* heapArray;
 			int maxSize;
 			int heapSize;
@@ -27,9 +27,7 @@ namespace AlgoGraph
 			void Insert(VertexDV item);
 			bool isEmpty();
 			void make_empty();
-			void DcreaseKey(int i_Vertex);
+			void decreaseKey(int i, float newDegree);
 			VertexDV DeleteMin();
-
-
 	};
 }

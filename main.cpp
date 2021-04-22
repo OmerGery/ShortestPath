@@ -60,27 +60,23 @@ int main(int argc, char* argv[])
 	
 	float matrixpath;
 	float listpath;
+	float dijkstraHeapPath;
 
 	Result PathOfAdjancencyListGraph = GraphAlgorithms::BellmanFord(&ListGraph,pathStartingVertex,pathEndVertex, listpath);
 	Result PathOfAdjacencyMatrixGraph = GraphAlgorithms::BellmanFord(&ListGraph, pathStartingVertex, pathEndVertex, matrixpath);
 	
-	minHeap* heapQueue = nullptr;
-
-	/// send Dijkstra(heapQueue, .....)
-
-	/*
-	minArray* arrayQueue = nullptr;
-
-	/// send Dijkstra(arrayQueue, .....)
-	*/
-
-	//this way Dijkstra algorithem only implemented once and just uses the queue it is given
-
-
-
-
+	//Need to check pathOf.... before printing!!!
 	cout << "List Path Length: " << listpath << endl;
 	cout << "Matrix Path Length: " << matrixpath << endl;
+
+
+	if (GraphAlgorithms::DijkstraHeap(&ListGraph, pathStartingVertex, pathEndVertex, dijkstraHeapPath))
+	{
+		cout << "dijkstraHeap algorithem returned: path is infinity => inaccessible";
+	}
+	else cout << "Dijkstra Path Length" << dijkstraHeapPath << endl;
+	
+
 	inputFile.close();
 	return 0;
 }
