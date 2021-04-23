@@ -1,34 +1,8 @@
-#include "AdjacencyListGraph.h"
-#include "AbstractGraph.h"
-#include "ConstTypes.h"
-#include "GraphAlgorithms.h"
-#include "DynamicArray.h"
-#include "AdjacencyMatrixGraph.h"
-#include "minHeap.h"
-#include "AbstractPriorityQueue.h"
-#include <iostream>
-#include <fstream>
-
+#include "IOManager.h"
 using namespace AlgoGraph;
-
-
-bool CheckInputFileValidity(string i_inputFileName)
-{
-	ifstream inputFile;
-	inputFile.open(i_inputFileName);
-	//Continue to check if file is ok......
-	
-	return true; //just for now
-}
-
-bool CheckComandArguments(int argc)
-{
-	return argc == 2;
-}
-
-
 int main(int argc, char* argv[])
 {
+	int numberOfVertex, pathStartingVertex, pathEndVertex,fileEndIndex,fileStartIndex;
 	string inputFileName;
 	if (CheckComandArguments(argc))
 	{
@@ -36,72 +10,27 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		cout << "Error with program command arguments";
-		exit(2);
+		PrintWrongInput();
 	}
-
-	if (!CheckInputFileValidity(inputFileName))
+	/*if (!CheckInputFileValidity(inputFileName,fileEndIndex))
 	{
-		cout << "Wrong Input";
-		exit(3);
-	}
+		cout << "invalid input";
+		exit(1);
+	}*/
 	ifstream inputFile;
 	inputFile.open(inputFileName);
-	int numberOfVertex;
-	int pathStartingVertex;
-	int pathEndVertex;
 
 	// we know that the file is valid
-	inputFile >> numberOfVertex;
-	inputFile >> pathStartingVertex;
-	inputFile >> pathEndVertex;
-	int fileINdentation =(int) inputFile.tellg();
-	 
-	AdjancencyListGraph ListGraph(inputFile, numberOfVertex, fileINdentation);
-	AdjacencyMatrixGraph MatrixGraph(inputFile, numberOfVertex, fileINdentation);
-	
-	float matrixpath;
-	float listpath;
-	float dijkstraHeapPath;
-
-
-	Result PathOfAdjancencyListGraph = GraphAlgorithms::BellmanFord(&ListGraph,pathStartingVertex,pathEndVertex, listpath);
-	Result PathOfAdjacencyMatrixGraph = GraphAlgorithms::BellmanFord(&MatrixGraph, pathStartingVertex, pathEndVertex, matrixpath);
-	
-	//Need to check pathOf.... before printing!!!
-	cout << "List Path Length: " << listpath << endl;
-	cout << "Matrix Path Length: " << matrixpath << endl;
-
-
-	if (GraphAlgorithms::DijkstraHeap(&ListGraph, pathStartingVertex, pathEndVertex, dijkstraHeapPath))
+	inputFile >> numberOfVertex >> pathStartingVertex >> pathEndVertex;
+	if (!firstThreeSelectionAreValid(numberOfVertex, pathStartingVertex, pathEndVertex))
 	{
-		cout << "dijkstraHeap algorithem returned: path is infinity => inaccessible";
+		PrintWrongInput();
 	}
-	else cout << "Dijkstra-Heap LIST Path Length " << dijkstraHeapPath << endl;
-	
-
-	if (GraphAlgorithms::DijkstraHeap(&MatrixGraph, pathStartingVertex, pathEndVertex, dijkstraHeapPath))
-	{
-		cout << "dijkstraHeap algorithem returned: path is infinity => inaccessible";
-	}
-	else cout << "Dijkstra-Heap MATRIX Path Length " << dijkstraHeapPath << endl;
-
-
-
-	if (GraphAlgorithms::DijkstraArray(&ListGraph, pathStartingVertex, pathEndVertex, dijkstraHeapPath))
-	{
-		cout << "Dijkstra-Array algorithem returned: path is infinity => inaccessible";
-	}
-	else cout << "Dijkstra-Array: LIST Path Length " << dijkstraHeapPath << endl;
-
-	if (GraphAlgorithms::DijkstraArray(&MatrixGraph, pathStartingVertex, pathEndVertex, dijkstraHeapPath))
-	{
-		cout << "Dijkstra-Array algorithem returned: path is infinity => inaccessible";
-	}
-	else cout << "Dijkstra-Array: MATRIX Path Length " << dijkstraHeapPath << endl;
-
+	fileStartIndex =(int) inputFile.tellg();
+	AdjancencyListGraph ListGraph(inputFile, numberOfVertex, fileStartIndex);
+	AdjacencyMatrixGraph MatrixGraph(inputFile, numberOfVertex, fileStartIndex);
 	inputFile.close();
-
+	RunAlgorithms(ListGraph, MatrixGraph, pathStartingVertex, pathEndVertex);
 	return 0;
 }
 

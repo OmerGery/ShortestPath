@@ -148,6 +148,7 @@
     <ClInclude Include="DynamicList.h" />
     <ClInclude Include="GraphAlgorithms.h" />
     <ClInclude Include="GraphEdge.h" />
+    <ClInclude Include="IOManager.h" />
     <ClInclude Include="minArray.h" />
     <ClInclude Include="minHeap.h" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClCompile Include="AdjacencyMatrixGraph.cpp" />
     <ClCompile Include="GraphAlgorithms.cpp" />
     <ClCompile Include="GraphEdge.cpp" />
+    <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="minArray.cpp" />
     <ClCompile Include="minHeap.cpp" />
