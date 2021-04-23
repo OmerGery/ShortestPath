@@ -150,6 +150,7 @@
     <ClInclude Include="GraphEdge.h" />
     <ClInclude Include="minArray.h" />
     <ClInclude Include="minHeap.h" />
+    <ClInclude Include="ProgramFlowStaticFunction.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdjacencyListGraph.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="minArray.cpp" />
     <ClCompile Include="minHeap.cpp" />
+    <ClCompile Include="ProgramFlowStaticFunction.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

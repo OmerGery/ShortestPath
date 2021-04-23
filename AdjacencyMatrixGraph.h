@@ -16,7 +16,7 @@ namespace AlgoGraph
 
 	public:
 		AdjacencyMatrixGraph(int i_NumberOfVertex);
-		AdjacencyMatrixGraph(ifstream& i_InputFile, int i_NumberOfVertex, int i_fileIndentation);
+		AdjacencyMatrixGraph(string i_InputFileName, int i_NumberOfVertex, int i_fileIndentation);
 		~AdjacencyMatrixGraph();
 		void MakeEmptyGraph(int i_NumberOfVertex);
 		bool isAdjacent(int i_OutVertex, int i_InVertex);

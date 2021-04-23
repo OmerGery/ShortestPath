@@ -77,21 +77,24 @@ namespace AlgoGraph
 		delete[] m_AdjancencyMatrix;
 	}
 
-	AdjacencyMatrixGraph::AdjacencyMatrixGraph(ifstream& i_InputFile, int i_NumberOfVertex,int i_fileIndentation)
+	AdjacencyMatrixGraph::AdjacencyMatrixGraph(string i_InputFileName, int i_NumberOfVertex,int i_fileIndentation)
 	{
+		ifstream inputFile;
+		inputFile.open(i_InputFileName);
+		inputFile.seekg(i_fileIndentation, inputFile.beg);
 		MakeEmptyGraph(i_NumberOfVertex);
-		i_InputFile.seekg(i_fileIndentation, i_InputFile.beg);
+		inputFile.seekg(i_fileIndentation, inputFile.beg);
 		int inVertex;
 		int outVertex;
 		float weightOfVertex;
-		while (!i_InputFile.eof())
+		while (!inputFile.eof())
 		{
-			i_InputFile >> outVertex >> inVertex >> weightOfVertex;
+			inputFile >> outVertex >> inVertex >> weightOfVertex;
 			AddEdgeToGraph(outVertex, inVertex, weightOfVertex);
 		}
+		inputFile.close();
 	}
 
-	//AdjancencyListGraph::CheckInPutValidity(maybe some variables) {}
 
 	void AdjacencyMatrixGraph::AddEdgeToGraph(int i_OutVertex, int i_InVertex, float i_WeightOfEdge)
 	{

@@ -29,24 +29,22 @@ namespace AlgoGraph
     }
 
 
-    AdjancencyListGraph::AdjancencyListGraph(ifstream& i_InputFile, int i_NumberOfVertex, int i_fileIndentation) : m_AdjancencyList(i_NumberOfVertex + 1)
+    AdjancencyListGraph::AdjancencyListGraph(string i_InputFileName, int i_NumberOfVertex, int i_fileIndentation) : m_AdjancencyList(i_NumberOfVertex + 1)
     {
         m_NumberOfVertices = i_NumberOfVertex;
-        i_InputFile.seekg(i_fileIndentation, i_InputFile.beg);
+        ifstream inputFile;
+        inputFile.open(i_InputFileName);
+        inputFile.seekg(i_fileIndentation, inputFile.beg);
         int inVertex;
         int outVertex;
         float weightOfVertex;
-        while (!i_InputFile.eof())
+        while (!inputFile.eof())
         {
-            i_InputFile >> outVertex >> inVertex >> weightOfVertex;        
+            inputFile >> outVertex >> inVertex >> weightOfVertex;
             AddEdgeToGraph(outVertex, inVertex, weightOfVertex);
         }
+        inputFile.close();
     }
-
-    AdjancencyListGraph::~AdjancencyListGraph()
-    {
-    }
-
 
     void AdjancencyListGraph::IsEdgeInRange(int i_OutVertex, int i_InVertex) 
     {

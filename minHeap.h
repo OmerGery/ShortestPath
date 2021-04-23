@@ -3,6 +3,7 @@
 #include "GraphEdge.h"
 #include "DynamicArray.h"
 #include "AbstractPriorityQueue.h"
+
 namespace AlgoGraph 
 {
 	class minHeap : public PriorityQueue
