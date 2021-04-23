@@ -14,7 +14,8 @@ using namespace AlgoGraph;
 int main(int argc, char* argv[])
 {
 	int NumberOfVertices, OriginVertex, EndVertex, FileStartLocation;
-	string inputFileName = GetFileName(argc, argv);
+	string inputFileName, outputFileName;
+	GetFileNames(argc, argv,inputFileName,outputFileName);
 
 	CheckInputFileValidity(inputFileName);
 	GetOriginVariables(NumberOfVertices, OriginVertex, EndVertex, FileStartLocation, inputFileName);
@@ -27,7 +28,7 @@ int main(int argc, char* argv[])
 	RunBelmanFordList(ListGraph, OriginVertex, EndVertex);
 	RunHeapMatrixDijkstra(MatrixGraph, OriginVertex, EndVertex);
 	RunArrayMatrixDijkstra(MatrixGraph, OriginVertex, EndVertex);
-	RunBelmanFordMatrix(MatrixGraph, OriginVertex, EndVertex);
+	RunBelmanFordMatrix(MatrixGraph, OriginVertex, EndVertex, argv[2]);
 	return 0;
 }
 

@@ -5,6 +5,8 @@
 #include "AdjacencyListGraph.h"
 #include "AdjacencyMatrixGraph.h"
 #include "GraphAlgorithms.h"
+#include <chrono>
+#include <iomanip>
 #include "FileValidity.h"
 namespace AlgoGraph
 {
@@ -19,19 +21,19 @@ namespace AlgoGraph
 
 	bool CheckComandArguments(int argc)
 	{
-		return argc == 2;
+		return argc == 3;
 	}
 
-	string GetFileName(int argc, char* argv[])
+	void GetFileNames(int argc, char* argv[],string& inputFileName,string& outputFileName)
 	{
-		string inputFileName;
 		if (CheckComandArguments(argc))
 			inputFileName = argv[1];
 		else
 			PrintWrongInput();
 		if (!CheckInputFileValidity(inputFileName))
 			PrintWrongInput();
-		return inputFileName;
+		inputFileName = argv[1];
+		outputFileName = argv[2];
 	}
 
 	void GetOriginVariables(int& NumberOfVertices, int& OriginVertex, int& EndVertex, int& FileIndentation, string FileName)
@@ -49,9 +51,28 @@ namespace AlgoGraph
 		inputFile.close();
 
 	}
-
-	void RunBelmanFordMatrix(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex)
+	std::chrono::steady_clock::time_point StartTimer()
 	{
+		std::chrono::steady_clock::time_point start = chrono::high_resolution_clock::now();
+		ios_base::sync_with_stdio(false);
+		return start;
+	}
+	void EndTimer(char* fileName, std::chrono::steady_clock::time_point start)
+	{
+		auto end = chrono::high_resolution_clock::now();
+
+		double time_taken = (double)chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+
+		time_taken *= 1e-9;
+		ofstream myfile(fileName);
+
+		myfile << "Adjacency Dijkstra heap <" << fixed << time_taken << setprecision(9);
+		myfile << "> sec" << endl;
+		myfile.close();
+	}
+	void RunBelmanFordMatrix(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex, char* fileName)
+	{
+		auto start = StartTimer();
 		float ShortestMatrixPath;
 
 		Result PathOfAdjacencyMatrixGraph = GraphAlgorithms::BellmanFord(&MatrixImplementedGraph, OriginVertex, EndVertex, ShortestMatrixPath);
@@ -62,6 +83,8 @@ namespace AlgoGraph
 			cout << "Matrix Bellman Ford: There is a Negative Cycle in the graph" << endl;
 		else 
 			cout << "Matrix Bellman Ford: No route from " << OriginVertex << " to " << EndVertex << endl;
+		EndTimer(fileName, start);
+		
 	}
 	void RunBelmanFordList(AdjancencyListGraph& listImplementedGraph, int& OriginVertex, int& EndVertex)
 	{
