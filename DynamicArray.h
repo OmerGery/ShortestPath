@@ -96,6 +96,25 @@ namespace AlgoGraph
 				resize();
 			_arr[_logicalSize++] = value;
 		}
+		void removeByIndex(int index)
+		{
+			T* newArray = nullptr;
+			int newSize = _logicalSize - 1;
+			newArray = new T[newSize];
+			int k = 1;
+			for (int i = 1; i<_logicalSize; i++)
+			{
+				if (i != index)
+				{
+					newArray[k] = _arr[index];
+				}
+				k++;
+			}
+			delete[] _arr;
+			_arr = newArray;
+			_physicalSize = newSize;
+			_logicalSize = newSize;
+		}
 
 
 		const T& front()    const { return _arr[0]; }

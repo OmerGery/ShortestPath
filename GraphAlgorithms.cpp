@@ -146,6 +146,21 @@ namespace AlgoGraph
 		o_ShortestPath = s_DegreesArray[i_EndVertex].weight;
 		return s_DegreesArray[i_EndVertex].infinity;
 	}
+	bool GraphAlgorithms::DijkstraArray(AbstractGraph* i_Graph, int i_StartVertex, int i_EndVertex, float& o_ShortestPath)
+	{
+		int N = i_Graph->GetAmountOfVertices();
+		Init(i_StartVertex, N);
+		minArray Q(s_DegreesArray, N);
+
+		while (!Q.isEmpty())
+		{
+			VertexDV u = Q.DeleteMin();
+			RelaxRunnerDijkstra(i_Graph, u, &Q);
+		}
+
+		o_ShortestPath = s_DegreesArray[i_EndVertex].weight;
+		return s_DegreesArray[i_EndVertex].infinity;
+	}
 
 
 }

@@ -36,10 +36,7 @@ namespace AlgoGraph
 	{
 		int indexToDelete = findMinIndex();
 		VertexDV res = minDegreeArray[indexToDelete];
-		
-
-
-
+		minDegreeArray.removeByIndex(indexToDelete);
 		return res;
 	}
 	void minArray::decreaseKey(int i, float newDegree)

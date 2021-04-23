@@ -83,6 +83,12 @@ int main(int argc, char* argv[])
 	}
 	else cout << "Dijkstra MATRIX Path Length " << dijkstraHeapPath << endl;
 
+	if (GraphAlgorithms::DijkstraArray(&ListGraph, pathStartingVertex, pathEndVertex, dijkstraHeapPath))
+	{
+		cout << "DijkstraArray algorithem returned: path is infinity => inaccessible";
+	}
+	else cout << "Dijkstra LIST Path Length " << dijkstraHeapPath << endl;
+
 
 	inputFile.close();
 	return 0;
