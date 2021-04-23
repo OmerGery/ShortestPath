@@ -25,6 +25,8 @@ namespace AlgoGraph
 		DynamicList<GraphEdge> GetAdjList(int i_OutVertex);
 		void AddEdgeToGraph(int i_OutVertex, int i_InVertex, float i_WeightOfEdge);
 		void RemoveEdgeFromGraph(int i_OutVertex, int i_InVertex);
+		AdjacencyMatrixGraph(const AdjacencyMatrixGraph& other) = delete;
+		AdjacencyMatrixGraph& operator=(const AdjacencyMatrixGraph& other) = delete;
 	};
 
 }

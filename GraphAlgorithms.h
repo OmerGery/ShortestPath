@@ -24,7 +24,8 @@ namespace AlgoGraph
 		static bool DijkstraArray(AbstractGraph* i_Graph, int i_StartVertex, int i_EndVertex, float& o_ShortestPath);
 		static void RelaxRunnerBF(AbstractGraph* i_Graph, int N);
 		static void RelaxRunnerDijkstra(AbstractGraph* i_Graph, VertexDV u, PriorityQueue* Q );
-
+		GraphAlgorithms(const GraphAlgorithms& other) = delete;
+		GraphAlgorithms& operator=(const GraphAlgorithms& other) = delete;
 	private:
 		static QueueType CheckType(PriorityQueue* Q);
 

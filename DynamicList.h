@@ -1,5 +1,4 @@
 #pragma once
-
 namespace AlgoGraph {
 
 	template<class T>

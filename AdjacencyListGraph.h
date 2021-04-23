@@ -28,7 +28,8 @@ namespace AlgoGraph
         void AddEdgeToGraph(int i_OutVertex, int i_InVertex,  float i_WeightOfEdge); 
         void RemoveEdgeFromGraph(int i_OutVertex, int i_InVertex);
         GraphEdge* FindEdgeInGraph(int i_OutVertex, int i_InVertex);
-        
+       // AdjancencyListGraph(const AdjancencyListGraph& other) = delete;
+        AdjancencyListGraph& operator=(const AdjancencyListGraph& other) = delete;
 
     };
 }

@@ -73,7 +73,7 @@ namespace AlgoGraph
     {
         IsSelfLoop(i_OutVertex,i_InVertex);
         IsEdgeInRange(i_OutVertex, i_InVertex);
-        if (i_WeightOfEdge < 0)
+        if(i_WeightOfEdge < 0)
         {
             cout << "invalid input";
             exit(1);

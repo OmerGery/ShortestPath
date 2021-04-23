@@ -5,18 +5,14 @@ int main(int argc, char* argv[])
 	int numberOfVertex, pathStartingVertex, pathEndVertex,fileEndIndex,fileStartIndex;
 	string inputFileName;
 	if (CheckComandArguments(argc))
-	{
 		inputFileName = argv[1];
-	}
 	else
-	{
 		PrintWrongInput();
-	}
-	/*if (!CheckInputFileValidity(inputFileName,fileEndIndex))
+	if (!CheckInputFileValidity(inputFileName,fileEndIndex))
 	{
 		cout << "invalid input";
 		exit(1);
-	}*/
+	}
 	ifstream inputFile;
 	inputFile.open(inputFileName);
 

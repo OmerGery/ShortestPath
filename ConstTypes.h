@@ -1,5 +1,6 @@
 #pragma once
 #define NO_PARENT -1
+
 namespace AlgoGraph
 {
 	enum class Result
