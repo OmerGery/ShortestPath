@@ -13,26 +13,21 @@ using namespace AlgoGraph;
 
 int main(int argc, char* argv[])
 {
-	string inputFileName= GetFileName(argc, argv);
+	int NumberOfVertices, OriginVertex, EndVertex, FileStartLocation;
+	string inputFileName = GetFileName(argc, argv);
 
-	/*
-	Need to check here file validity
-	CheckInputFileValidity(inputFileName)
-	*/
+	CheckInputFileValidity(inputFileName);
+	GetOriginVariables(NumberOfVertices, OriginVertex, EndVertex, FileStartLocation, inputFileName);
 
-	int NumberOfVertices;
-	int OriginVertex;
-	int EndVertex;
-	int FileIndentation;
-	GetOriginVariables(NumberOfVertices, OriginVertex, EndVertex, FileIndentation, inputFileName);
+	AdjancencyListGraph ListGraph(inputFileName, NumberOfVertices, FileStartLocation);
+	AdjacencyMatrixGraph MatrixGraph(inputFileName, NumberOfVertices, FileStartLocation);
 
-	AdjancencyListGraph ListGraph(inputFileName, NumberOfVertices, FileIndentation);
-	AdjacencyMatrixGraph MatrixGraph(inputFileName, NumberOfVertices, FileIndentation);
-	
-	RunBelmanFord(ListGraph, MatrixGraph, OriginVertex, EndVertex);
-	RunHeapImplementedDijkstra(ListGraph, MatrixGraph, OriginVertex, EndVertex);
-	RunArrayImplementedDijkstra(ListGraph, MatrixGraph, OriginVertex, EndVertex);
-
+	RunHeapListDijkstra(ListGraph, OriginVertex, EndVertex);
+	RunArrayListDijkstra(ListGraph, OriginVertex, EndVertex);
+	RunBelmanFordList(ListGraph, OriginVertex, EndVertex);
+	RunHeapMatrixDijkstra(MatrixGraph, OriginVertex, EndVertex);
+	RunArrayMatrixDijkstra(MatrixGraph, OriginVertex, EndVertex);
+	RunBelmanFordMatrix(MatrixGraph, OriginVertex, EndVertex);
 	return 0;
 }
 

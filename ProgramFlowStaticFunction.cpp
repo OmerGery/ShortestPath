@@ -5,7 +5,7 @@
 #include "AdjacencyListGraph.h"
 #include "AdjacencyMatrixGraph.h"
 #include "GraphAlgorithms.h"
-
+#include "FileValidity.h"
 namespace AlgoGraph
 {
 	bool CheckInputFileValidity(string i_inputFileName)
@@ -26,21 +26,11 @@ namespace AlgoGraph
 	{
 		string inputFileName;
 		if (CheckComandArguments(argc))
-		{
 			inputFileName = argv[1];
-		}
 		else
-		{
-			cout << "Error with program command arguments";
-			exit(2);
-		}
-
+			PrintWrongInput();
 		if (!CheckInputFileValidity(inputFileName))
-		{
-			cout << "Wrong Input";
-			exit(3);
-		}
-
+			PrintWrongInput();
 		return inputFileName;
 	}
 
@@ -58,64 +48,70 @@ namespace AlgoGraph
 
 	}
 
-	void RunBelmanFord(AdjancencyListGraph& listImplementedGraph, AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex)
+	void RunBelmanFordMatrix(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex)
 	{
 		float ShortestMatrixPath;
-		float ShortestListPath;
 
-		Result PathOfAdjancencyListGraph = GraphAlgorithms::BellmanFord(&listImplementedGraph, OriginVertex, EndVertex, ShortestListPath);
 		Result PathOfAdjacencyMatrixGraph = GraphAlgorithms::BellmanFord(&MatrixImplementedGraph, OriginVertex, EndVertex, ShortestMatrixPath);
 
-		if (PathOfAdjancencyListGraph == Result::SUCCESS)
-		{
-			cout << "List Path Length: " << ShortestListPath << endl;
-			cout << "Matrix Path Length: " << ShortestMatrixPath << endl;
-		}
-		else if ((PathOfAdjancencyListGraph == Result::NEGATIVE_CYCLE))
-		{
-			cout << "There is a negative cycle in the graph" << endl;
-		}
-		else if (PathOfAdjancencyListGraph == Result::INFINITY_PATH)
-		{
-			cout << EndVertex << " Is inaccessible from " << OriginVertex << endl;
-		}
+		if (PathOfAdjacencyMatrixGraph == Result::SUCCESS)
+			cout << "Matrix Bellman Ford " << ShortestMatrixPath << endl;
+		else if ((PathOfAdjacencyMatrixGraph == Result::NEGATIVE_CYCLE))
+			cout << "Matrix Bellman Ford: There is a Negative Cycle in the graph" << endl;
+		else 
+			cout << "Matrix Bellman Ford: No route from " << OriginVertex << " to " << EndVertex << endl;
 	}
-
-	void RunHeapImplementedDijkstra(AdjancencyListGraph& listImplementedGraph, AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex)
+	void RunBelmanFordList(AdjancencyListGraph& listImplementedGraph, int& OriginVertex, int& EndVertex)
+	{
+		float ShortestListPath;
+		Result PathOfListGraph = GraphAlgorithms::BellmanFord(&listImplementedGraph, OriginVertex, EndVertex, ShortestListPath);
+		if (PathOfListGraph == Result::SUCCESS)
+			cout << "Adjacency Bellman Ford " << ShortestListPath << endl;
+		else if ((PathOfListGraph == Result::NEGATIVE_CYCLE))
+			cout << "Adjacency Bellman Ford: There is a Negative Cycle in the graph" << endl;
+		else
+			cout << "Adjacency Bellman Ford: No route from " << OriginVertex << " to " << EndVertex << endl;
+	}
+	void RunHeapMatrixDijkstra(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex)
 	{
 		float ShortestMatrixPath;
-		float ShortestListPath;
-
-		if (GraphAlgorithms::DijkstraHeap(&listImplementedGraph, OriginVertex, EndVertex, ShortestListPath))
-		{
-			cout << "dijkstraHeap algorithem returned: path is infinity => inaccessible";
-		}
-		else cout << "Dijkstra-Heap LIST Path Length " << ShortestListPath << endl;
-
 
 		if (GraphAlgorithms::DijkstraHeap(&MatrixImplementedGraph, OriginVertex, EndVertex, ShortestMatrixPath))
 		{
-			cout << "dijkstraHeap algorithem returned: path is infinity => inaccessible";
+			cout << "Matrix Dijkstra heap: No Route from " << OriginVertex << " to " << EndVertex << endl;
 		}
-		else cout << "Dijkstra-Heap MATRIX Path Length " << ShortestMatrixPath << endl;
+		else cout << "Matrix Dijkstra heap " << ShortestMatrixPath << endl;
 	}
-
-	void RunArrayImplementedDijkstra(AdjancencyListGraph& listImplementedGraph, AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex)
+	void RunHeapListDijkstra(AdjancencyListGraph& ListImplementedGraph, int& OriginVertex, int& EndVertex)
 	{
-		float ShortestMatrixPath;
 		float ShortestListPath;
 
-		if (GraphAlgorithms::DijkstraArray(&listImplementedGraph, OriginVertex, EndVertex, ShortestListPath))
+		if (GraphAlgorithms::DijkstraHeap(&ListImplementedGraph, OriginVertex, EndVertex, ShortestListPath))
 		{
-			cout << "Dijkstra-Array algorithem returned: path is infinity => inaccessible";
+			cout << "Adjacency Dijkstra heap: No Route from " << OriginVertex << " to " << EndVertex << endl;
 		}
-		else cout << "Dijkstra-Array: LIST Path Length " << ShortestListPath << endl;
+		else cout << "Adjacency Dijkstra heap " << ShortestListPath << endl;
+	}
+
+	void RunArrayMatrixDijkstra(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex)
+	{
+		float ShortestMatrixPath;
 
 		if (GraphAlgorithms::DijkstraArray(&MatrixImplementedGraph, OriginVertex, EndVertex, ShortestMatrixPath))
 		{
-			cout << "Dijkstra-Array algorithem returned: path is infinity => inaccessible";
+			cout << "Matrix Dijkstra array: No Route from " << OriginVertex << " to " << EndVertex << endl;
 		}
-		else cout << "Dijkstra-Array: MATRIX Path Length " << ShortestMatrixPath << endl;
+		else cout << "Matrix Dijkstra array " << ShortestMatrixPath << endl;
+	}
+	void RunArrayListDijkstra(AdjancencyListGraph& ListImplementedGraph, int& OriginVertex, int& EndVertex)
+	{
+		float ShortestListPath;
+
+		if (GraphAlgorithms::DijkstraArray(&ListImplementedGraph, OriginVertex, EndVertex, ShortestListPath))
+		{
+			cout << "Adjacency Dijkstra array: No Route from " << OriginVertex << " to " << EndVertex << endl;
+		}
+		else cout << "Adjacency Dijkstra array " << ShortestListPath << endl;
 	}
 }
 

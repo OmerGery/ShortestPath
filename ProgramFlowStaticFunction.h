@@ -13,8 +13,11 @@ namespace AlgoGraph
 	bool CheckComandArguments(int argc);
 	string GetFileName(int argc, char* argv[]);
 	void GetOriginVariables(int& NumberOfVertices, int& OriginVertex, int& EndVertex, int& FileIndentation, string FileName);
-	void RunBelmanFord(AdjancencyListGraph& listImplementedGraph, AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex);
-	void RunHeapImplementedDijkstra(AdjancencyListGraph& listImplementedGraph, AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex);
-	void RunArrayImplementedDijkstra(AdjancencyListGraph& listImplementedGraph, AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex);
+	void RunBelmanFordMatrix(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex);
+	void RunBelmanFordList(AdjancencyListGraph& listImplementedGraph, int& OriginVertex, int& EndVertex);
+	void RunHeapListDijkstra(AdjancencyListGraph& ListImplementedGraph, int& OriginVertex, int& EndVertex);
+	void RunHeapMatrixDijkstra(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex);
+	void RunArrayMatrixDijkstra(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex);
+	void RunArrayListDijkstra(AdjancencyListGraph& ListImplementedGraph, int& OriginVertex, int& EndVertex);
 }
 
