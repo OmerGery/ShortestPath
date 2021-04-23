@@ -1,6 +1,7 @@
 #include "DynamicList.h"
 #include "DynamicArray.h"
 #include "adjacencyMatrixGraph.h"
+#include "FileValidity.h"
 #include <iostream>
 #include <fstream>
 
@@ -38,10 +39,7 @@ namespace AlgoGraph
 	void AdjacencyMatrixGraph::IsSelfLoop(int i_OutVertex, int i_InVertex)
 	{
 		if (i_OutVertex==i_InVertex)
-		{
-			cout << "Wrong input";
-			exit(5);
-		}
+			PrintWrongInput();
 	}
 
 	DynamicList<GraphEdge> AdjacencyMatrixGraph::GetAdjList(int i_OutVertex)
@@ -61,10 +59,7 @@ namespace AlgoGraph
 	void AdjacencyMatrixGraph::IsEdgeInRange(int i_OutVertex, int i_InVertex)
 	{
 		if (i_OutVertex > m_NumberOfVertices || i_InVertex > m_NumberOfVertices || i_OutVertex < 1 || i_InVertex < 1)
-		{
-			cout << "Wrong input";
-			exit(5);
-		}
+			PrintWrongInput();
 	}
 
 	AdjacencyMatrixGraph::~AdjacencyMatrixGraph()
@@ -104,19 +99,13 @@ namespace AlgoGraph
 		IsEdgeInRange(i_OutVertex, i_InVertex);
 		IsSelfLoop(i_OutVertex, i_InVertex);
 		if (i_WeightOfEdge < 0)
-		{
-			cout << "invalid input";
-			exit(1);
-		}
+			PrintWrongInput();
 		if (m_AdjancencyMatrix[i_OutVertex][i_InVertex].IsWeightInfinity())
 		{
 			m_AdjancencyMatrix[i_OutVertex][i_InVertex].SetEdgeWeight(i_WeightOfEdge);
 		}
 		else //if is not true means edge is not infinity => edge already exist
-		{
-			cout << "Wrong input";
-			exit(6);
-		}
+			PrintWrongInput();
 	}
 
 	void AdjacencyMatrixGraph::RemoveEdgeFromGraph(int i_OutVertex, int i_InVertex)

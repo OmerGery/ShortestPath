@@ -2,6 +2,7 @@
 #include "DynamicArray.h"
 #include "AdjacencyListGraph.h"
 #include "GraphEdge.h"
+#include "FileValidity.h"
 #include <iostream>
 #include <fstream>
 
@@ -49,19 +50,13 @@ namespace AlgoGraph
     void AdjancencyListGraph::IsEdgeInRange(int i_OutVertex, int i_InVertex) 
     {
         if (i_OutVertex > m_NumberOfVertices || i_InVertex > m_NumberOfVertices || i_OutVertex < 1 || i_InVertex < 1)
-        {
-            cout << "Wrong input";
-            exit(3);
-        }
+            PrintWrongInput();
 
     }
     void AdjancencyListGraph::IsSelfLoop(int i_OutVertex, int i_InVertex)
     {
         if (i_OutVertex == i_InVertex)
-        {
-            cout << "invalid input";
-            exit(1);
-        }
+            PrintWrongInput();
 
     }
 
@@ -72,16 +67,10 @@ namespace AlgoGraph
         IsSelfLoop(i_OutVertex,i_InVertex);
         IsEdgeInRange(i_OutVertex, i_InVertex);
         if(i_WeightOfEdge < 0)
-        {
-            cout << "invalid input";
-            exit(1);
-        }
+            PrintWrongInput();
         GraphEdge* existingEdge = FindEdgeInGraph(i_OutVertex, i_InVertex);
         if (existingEdge != nullptr)
-        {
-            cout << "invalid input";
-            exit(1);
-        }
+            PrintWrongInput();
         else
         {
             GraphEdge EdgeToBeAdded(i_OutVertex, i_InVertex, i_WeightOfEdge);

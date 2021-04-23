@@ -38,11 +38,13 @@ namespace AlgoGraph
 	{
 		ifstream inputFile;
 		inputFile.open(FileName);
-
+		
 		// we know that the file is valid
 		inputFile >> NumberOfVertices;
 		inputFile >> OriginVertex;
 		inputFile >> EndVertex;
+		if (!firstThreeSelectionAreValid(NumberOfVertices, OriginVertex, EndVertex))
+			PrintWrongInput();
 		FileIndentation = (int)inputFile.tellg();
 		inputFile.close();
 
