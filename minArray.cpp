@@ -27,7 +27,7 @@ namespace AlgoGraph
 				minResult = i;
 			}
 		}
-
+		
 		return minResult;
 	}
 
@@ -35,14 +35,22 @@ namespace AlgoGraph
 	VertexDV minArray::DeleteMin()
 	{
 		int indexToDelete = findMinIndex();
+		VertexDV res = minDegreeArray[indexToDelete];
+		
+
+
+
+		return res;
 	}
 	void minArray::decreaseKey(int i, float newDegree)
 	{
-
+		minDegreeArray[i].VertexWeight.infinity = false;
+		minDegreeArray[i].VertexWeight.weight = newDegree;
 	}
 
 	bool minArray::isEmpty()
 	{
+		return !(minDegreeArray.size()==0);
 	}
 
 }
