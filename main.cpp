@@ -74,20 +74,20 @@ int main(int argc, char* argv[])
 	{
 		cout << "dijkstraHeap algorithem returned: path is infinity => inaccessible";
 	}
-	else cout << "Dijkstra LIST Path Length " << dijkstraHeapPath << endl;
+	else cout << "Dijkstra-Heap LIST Path Length " << dijkstraHeapPath << endl;
 	
 
 	if (GraphAlgorithms::DijkstraHeap(&MatrixGraph, pathStartingVertex, pathEndVertex, dijkstraHeapPath))
 	{
 		cout << "dijkstraHeap algorithem returned: path is infinity => inaccessible";
 	}
-	else cout << "Dijkstra MATRIX Path Length " << dijkstraHeapPath << endl;
+	else cout << "Dijkstra-Heap MATRIX Path Length " << dijkstraHeapPath << endl;
 
 	if (GraphAlgorithms::DijkstraArray(&ListGraph, pathStartingVertex, pathEndVertex, dijkstraHeapPath))
 	{
-		cout << "DijkstraArray algorithem returned: path is infinity => inaccessible";
+		cout << "Dijkstra-Array algorithem returned: path is infinity => inaccessible";
 	}
-	else cout << "Dijkstra LIST Path Length " << dijkstraHeapPath << endl;
+	else cout << "Dijkstra-Array: LIST Path Length " << dijkstraHeapPath << endl;
 
 
 	inputFile.close();
