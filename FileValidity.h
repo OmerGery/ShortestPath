@@ -10,11 +10,11 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+
 namespace AlgoGraph
 {
 	bool CheckInputFileValidity(string i_inputFileName, int& endLocation);
 	bool firstThreeSelectionAreValid(int numberOfVertex, int pathStartingVertex, int pathEndVertex);
-	bool CheckComandArguments(int argc);
 	void PrintWrongInput();
 	void RunAlgorithms(AdjancencyListGraph& ListGraph, AdjacencyMatrixGraph& MatrixGraph,int pathStartingVertex,int pathEndVertex);
 }

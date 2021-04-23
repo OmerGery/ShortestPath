@@ -6,6 +6,8 @@
 #include "AdjacencyMatrixGraph.h"
 #include "GraphAlgorithms.h"
 #include "ProgramFlowStaticFunction.h"
+#include "FileValidity.h"
+
 using namespace AlgoGraph;
 
 
