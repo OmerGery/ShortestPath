@@ -19,6 +19,8 @@ namespace AlgoGraph
 			VertexDV DeleteMin();
 			void decreaseKey(int i, float newDegree);
 			bool isEmpty();
+			minArray(const minArray& other) = delete;
+			minArray& operator=(const minArray& other) = delete;
 
 	};
 }

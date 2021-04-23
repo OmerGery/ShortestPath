@@ -96,9 +96,18 @@ namespace AlgoGraph
 	}
 
 
+
+
 	void AdjacencyMatrixGraph::AddEdgeToGraph(int i_OutVertex, int i_InVertex, float i_WeightOfEdge)
 	{
+		
 		IsEdgeInRange(i_OutVertex, i_InVertex);
+		IsSelfLoop(i_OutVertex, i_InVertex);
+		if (i_WeightOfEdge < 0)
+		{
+			cout << "invalid input";
+			exit(1);
+		}
 		if (m_AdjancencyMatrix[i_OutVertex][i_InVertex].IsWeightInfinity())
 		{
 			m_AdjancencyMatrix[i_OutVertex][i_InVertex].SetEdgeWeight(i_WeightOfEdge);

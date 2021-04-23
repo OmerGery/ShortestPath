@@ -12,6 +12,6 @@ namespace AlgoGraph
 		virtual VertexDV DeleteMin() = 0;
 		virtual void decreaseKey(int i, float newDegree) = 0;
 		virtual bool isEmpty() = 0;
-
+		PriorityQueue& operator=(const PriorityQueue& other) = delete;
 	};
 }

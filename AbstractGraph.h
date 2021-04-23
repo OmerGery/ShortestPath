@@ -3,7 +3,6 @@
 #include "DynamicList.h"
 #include "GraphEdge.h"
 #include <iostream>
-
 using namespace std;
 namespace AlgoGraph
 {
@@ -20,5 +19,6 @@ namespace AlgoGraph
 			virtual void AddEdgeToGraph(int i_OutVertex, int i_InVertex, float i_WeightOfEdge) = 0;
 			virtual void RemoveEdgeFromGraph(int i_OutVertex, int i_InVertex) = 0;
 			int GetAmountOfVertices() { return m_NumberOfVertices; }
+			AbstractGraph& operator=(const AbstractGraph& other) = delete;
 	};
 }

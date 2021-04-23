@@ -18,14 +18,10 @@ namespace AlgoGraph {
 			bool IsWeightInfinity();
 			void SetEdgeWeight(float o_weight);
 			void SetInfinityWeight();
-
 			int GetInVertex();
 			void SetInVertex(int o_InVertex);
 			int GetOutVertex();
 			void SetOutVertex(int o_OutVertex);
-
 			bool operator==(const GraphEdge& other);
-		
-
 	};
 }

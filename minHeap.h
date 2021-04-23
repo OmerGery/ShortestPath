@@ -30,5 +30,8 @@ namespace AlgoGraph
 			void make_empty();
 			void decreaseKey(int i, float newDegree);
 			VertexDV DeleteMin();
+			minHeap(const minHeap& other) = delete;
+			minHeap& operator=(const minHeap& other) = delete;
+
 	};
 }

@@ -59,8 +59,8 @@ namespace AlgoGraph
     {
         if (i_OutVertex == i_InVertex)
         {
-            cout << "Wrong input";
-            exit(3);
+            cout << "invalid input";
+            exit(1);
         }
 
     }
@@ -71,11 +71,16 @@ namespace AlgoGraph
     {
         IsSelfLoop(i_OutVertex,i_InVertex);
         IsEdgeInRange(i_OutVertex, i_InVertex);
+        if(i_WeightOfEdge < 0)
+        {
+            cout << "invalid input";
+            exit(1);
+        }
         GraphEdge* existingEdge = FindEdgeInGraph(i_OutVertex, i_InVertex);
         if (existingEdge != nullptr)
         {
-            cout << "Wrong input";
-            exit(4);
+            cout << "invalid input";
+            exit(1);
         }
         else
         {
