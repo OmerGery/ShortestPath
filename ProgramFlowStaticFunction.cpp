@@ -57,7 +57,7 @@ namespace AlgoGraph
 		ios_base::sync_with_stdio(false);
 		return start;
 	}
-	void EndTimer(char* fileName, std::chrono::steady_clock::time_point start)
+	void EndTimer(char* fileName, std::chrono::steady_clock::time_point start,const char* FuncName)
 	{
 		auto end = chrono::high_resolution_clock::now();
 
@@ -66,7 +66,7 @@ namespace AlgoGraph
 		time_taken *= 1e-9;
 		ofstream myfile(fileName);
 
-		myfile << "Adjacency Dijkstra heap <" << fixed << time_taken << setprecision(9);
+		myfile << FuncName << " <" << fixed << time_taken << setprecision(9);
 		myfile << "> sec" << endl;
 		myfile.close();
 	}
@@ -83,7 +83,7 @@ namespace AlgoGraph
 			cout << "Matrix Bellman Ford: There is a Negative Cycle in the graph" << endl;
 		else 
 			cout << "Matrix Bellman Ford: No route from " << OriginVertex << " to " << EndVertex << endl;
-		EndTimer(fileName, start);
+		EndTimer(fileName, start, "Matrix Bellman Ford" );
 		
 	}
 	void RunBelmanFordList(AdjancencyListGraph& listImplementedGraph, int& OriginVertex, int& EndVertex)

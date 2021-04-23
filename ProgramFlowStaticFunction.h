@@ -21,6 +21,6 @@ namespace AlgoGraph
 	void RunArrayMatrixDijkstra(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex);
 	void RunArrayListDijkstra(AdjancencyListGraph& ListImplementedGraph, int& OriginVertex, int& EndVertex);
 	std::chrono::steady_clock::time_point StartTimer();
-	void EndTimer(char* fileName);
+	void EndTimer(char* fileName, std::chrono::steady_clock::time_point start, const char* FuncName);
 }
 
