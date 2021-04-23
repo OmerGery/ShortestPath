@@ -7,17 +7,18 @@ namespace AlgoGraph
 {
 	class minArray : public PriorityQueue
 	{
-	private:
+		private:
 
-		DynamicArray<VertexDV> minDegreeArray;
-		int findMinIndex();
+			DynamicArray<VertexDV> minDegreeArray;
+			DynamicArray<int> AccessArray;
+			VertexDV minDegreeVertex;
+			int findMinIndex();
 
-	public:
-
-		minArray(DynamicArray<Weight> Degrees, int size);
-		VertexDV DeleteMin();
-		void decreaseKey(int i, float newDegree);
-		bool isEmpty();
+		public:
+			minArray(DynamicArray<Weight> Degrees, int size);
+			VertexDV DeleteMin();
+			void decreaseKey(int i, float newDegree);
+			bool isEmpty();
 
 	};
 }

@@ -17,6 +17,8 @@ namespace AlgoGraph
 		heapSize = size;
 		maxSize = size;
 		heapArray = new VertexDV[size];
+		AccessArray.set_logic_size(size+1);
+
 		for (int i = 0; i < size; i++)
 		{
 			heapArray[i].VertexWeight = Degrees[i+1];

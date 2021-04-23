@@ -26,6 +26,7 @@ bool CheckComandArguments(int argc)
 	return argc == 2;
 }
 
+
 int main(int argc, char* argv[])
 {
 	string inputFileName;
@@ -49,6 +50,7 @@ int main(int argc, char* argv[])
 	int numberOfVertex;
 	int pathStartingVertex;
 	int pathEndVertex;
+
 	// we know that the file is valid
 	inputFile >> numberOfVertex;
 	inputFile >> pathStartingVertex;
@@ -61,6 +63,7 @@ int main(int argc, char* argv[])
 	float matrixpath;
 	float listpath;
 	float dijkstraHeapPath;
+
 
 	Result PathOfAdjancencyListGraph = GraphAlgorithms::BellmanFord(&ListGraph,pathStartingVertex,pathEndVertex, listpath);
 	Result PathOfAdjacencyMatrixGraph = GraphAlgorithms::BellmanFord(&MatrixGraph, pathStartingVertex, pathEndVertex, matrixpath);
@@ -83,14 +86,22 @@ int main(int argc, char* argv[])
 	}
 	else cout << "Dijkstra-Heap MATRIX Path Length " << dijkstraHeapPath << endl;
 
+
+
 	if (GraphAlgorithms::DijkstraArray(&ListGraph, pathStartingVertex, pathEndVertex, dijkstraHeapPath))
 	{
 		cout << "Dijkstra-Array algorithem returned: path is infinity => inaccessible";
 	}
 	else cout << "Dijkstra-Array: LIST Path Length " << dijkstraHeapPath << endl;
 
+	if (GraphAlgorithms::DijkstraArray(&MatrixGraph, pathStartingVertex, pathEndVertex, dijkstraHeapPath))
+	{
+		cout << "Dijkstra-Array algorithem returned: path is infinity => inaccessible";
+	}
+	else cout << "Dijkstra-Array: MATRIX Path Length " << dijkstraHeapPath << endl;
 
 	inputFile.close();
+
 	return 0;
 }
 

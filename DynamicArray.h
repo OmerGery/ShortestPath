@@ -60,7 +60,10 @@ namespace AlgoGraph
 		}
 		~DynamicArray()
 		{
-			delete[] _arr;
+			if (_physicalSize != 0)
+			{
+				delete[] _arr;
+			}
 		}
 
 
@@ -96,19 +99,27 @@ namespace AlgoGraph
 				resize();
 			_arr[_logicalSize++] = value;
 		}
+
 		void removeByIndex(int index)
 		{
 			T* newArray = nullptr;
 			int newSize = _logicalSize - 1;
+			if (newSize == 0)
+			{
+				_logicalSize = 0;
+				_physicalSize = 0;
+				delete[] _arr;
+				return;
+			}
 			newArray = new T[newSize];
-			int k = 1;
-			for (int i = 1; i<_logicalSize; i++)
+			int k = 0;
+			for (int i = 0; i<_logicalSize; i++)
 			{
 				if (i != index)
 				{
-					newArray[k] = _arr[index];
+					newArray[k] = _arr[i];
+					k++;
 				}
-				k++;
 			}
 			delete[] _arr;
 			_arr = newArray;
