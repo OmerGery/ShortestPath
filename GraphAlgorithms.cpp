@@ -111,6 +111,8 @@ namespace AlgoGraph
 		else return QueueType::Array;
 	}
 
+
+
 	void GraphAlgorithms::RelaxRunnerDijkstra(AbstractGraph* i_Graph, VertexDV u, PriorityQueue* Q)
 	{
 
@@ -144,4 +146,6 @@ namespace AlgoGraph
 		o_ShortestPath = s_DegreesArray[i_EndVertex].weight;
 		return s_DegreesArray[i_EndVertex].infinity;
 	}
+
+
 }

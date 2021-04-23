@@ -29,8 +29,8 @@ namespace AlgoGraph
 			for (int j = 0; j < size; j++)
 			{
 				m_AdjancencyMatrix[i][j].SetInfinityWeight();
-				m_AdjancencyMatrix[i][j].SetOutVertex(j);
-				m_AdjancencyMatrix[i][j].SetInVertex(i);
+				m_AdjancencyMatrix[i][j].SetOutVertex(i);
+				m_AdjancencyMatrix[i][j].SetInVertex(j);
 
 			}
 		}
@@ -43,14 +43,16 @@ namespace AlgoGraph
 			exit(5);
 		}
 	}
+
 	DynamicList<GraphEdge> AdjacencyMatrixGraph::GetAdjList(int i_OutVertex)
 	{
 		DynamicList<GraphEdge> adjacentVerticiesList;
-		for (int i = 0; i < m_NumberOfVertices; i++)
+		for (int i = 1; i <= m_NumberOfVertices; i++)
 		{
 			if (isAdjacent(i_OutVertex, i))
 			{
-				adjacentVerticiesList.AddItemToHead(m_AdjancencyMatrix[i_OutVertex][i]);
+				GraphEdge edgeToBeAdded = m_AdjancencyMatrix[i_OutVertex][i];
+				adjacentVerticiesList.AddItemToTail(edgeToBeAdded);
 			}
 		}
 		return adjacentVerticiesList;
