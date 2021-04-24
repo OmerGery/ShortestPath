@@ -21,7 +21,8 @@ namespace AlgoGraph
 			static void RelaxRunnerDijkstra(AbstractGraph* i_Graph, VertexDV u, PriorityQueue* Q);
 			static bool Relax(int i_OutVertex, int i_InVertex, Weight weightUV);
 			static void Init(int i_StartVertex, int i_AmountOfVertices);
-
+			GraphAlgorithms(const GraphAlgorithms& other) = delete;
+			GraphAlgorithms& operator=(const GraphAlgorithms& other) = delete;
 
 		public:
 			static Result BellmanFord(AbstractGraph* i_Graph,int i_StartVertex,int i_EndVertex,float & o_ShortestPath);
