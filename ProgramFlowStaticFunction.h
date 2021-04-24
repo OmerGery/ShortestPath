@@ -10,7 +10,9 @@
 
 namespace AlgoGraph
 {
-	bool CheckInputFileValidity(string i_inputFileName);
+	bool CheckInputFileValidity(string i_inputFileName, int& amountOfEdges);
+	bool firstThreeSelectionAreValid(int numberOfVertex, int pathStartingVertex, int pathEndVertex);
+	void PrintWrongInput();
 	bool CheckComandArguments(int argc);
 	void GetFileNames(int argc, char* argv[], string& inputFileName, string& outputFileName);
 	void GetOriginVariables(int& NumberOfVertices, int& OriginVertex, int& EndVertex, int& FileIndentation, string FileName);

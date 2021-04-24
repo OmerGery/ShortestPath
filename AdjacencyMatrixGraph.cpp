@@ -1,7 +1,7 @@
 #include "DynamicList.h"
 #include "DynamicArray.h"
 #include "adjacencyMatrixGraph.h"
-#include "FileValidity.h"
+#include "ProgramFlowStaticFunction.h"
 #include <iostream>
 #include <fstream>
 
@@ -81,11 +81,11 @@ namespace AlgoGraph
 		inputFile.seekg(i_fileIndentation, inputFile.beg);
 		int inVertex;
 		int outVertex;
-		float weightOfVertex;
+		float weightOfEdge;
 		while (!inputFile.eof())
 		{
-			inputFile >> outVertex >> inVertex >> weightOfVertex;
-			AddEdgeToGraph(outVertex, inVertex, weightOfVertex);
+			inputFile >> outVertex >> inVertex >> weightOfEdge;
+			AddEdgeToGraph(outVertex, inVertex, weightOfEdge);
 		}
 		inputFile.close();
 	}

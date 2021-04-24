@@ -5,7 +5,6 @@
     <ClCompile Include="AdjacencyMatrixGraph.cpp" />
     <ClCompile Include="GraphAlgorithms.cpp" />
     <ClCompile Include="GraphEdge.cpp" />
-    <ClCompile Include="FileValidity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="minArray.cpp" />
     <ClCompile Include="minHeap.cpp" />
@@ -21,7 +20,6 @@
     <ClInclude Include="DynamicList.h" />
     <ClInclude Include="GraphAlgorithms.h" />
     <ClInclude Include="GraphEdge.h" />
-    <ClInclude Include="FileValidity.h" />
     <ClInclude Include="minArray.h" />
     <ClInclude Include="minHeap.h" />
     <ClInclude Include="ProgramFlowStaticFunction.h" />

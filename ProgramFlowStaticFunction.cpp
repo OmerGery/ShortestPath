@@ -7,16 +7,48 @@
 #include "GraphAlgorithms.h"
 #include <chrono>
 #include <iomanip>
-#include "FileValidity.h"
+#include "ProgramFlowStaticFunction.h"
+#define MAX_CHARS_INLINE 512
 namespace AlgoGraph
 {
-	bool CheckInputFileValidity(string i_inputFileName)
+	bool CheckInputFileValidity(string i_inputFileName, int& amountOfEdges)
 	{
 		ifstream inputFile;
 		inputFile.open(i_inputFileName);
-		//Continue to check if file is ok......
+		char* line = nullptr;
+		char currentChar;
+		amountOfEdges = 0;
+		for (int i = 0; i < 3; i++)
+		{
+			int k = 0;
+			inputFile.getline(line, MAX_CHARS_INLINE);
+			currentChar = line[k];
+			while (currentChar != '\0')
+			{
+				if (currentChar > '9' || currentChar < '0')
+					return false;
+				currentChar = line[k];
+				k++;
+			}
 
-		return true; //just for now
+		}
+		return true;
+	}
+	bool firstThreeSelectionAreValid(int numberOfVertex, int pathStartingVertex, int pathEndVertex)
+	{
+		if (numberOfVertex < 0)
+			return false;
+		if (pathStartingVertex > numberOfVertex || pathStartingVertex < 1)
+			return false;
+		if (pathEndVertex > numberOfVertex || pathEndVertex < 1)
+			return false;
+		return true;
+	}
+
+	void PrintWrongInput()
+	{
+		cout << "invalid input";
+		exit(1);
 	}
 
 	bool CheckComandArguments(int argc)
@@ -30,7 +62,8 @@ namespace AlgoGraph
 			inputFileName = argv[1];
 		else
 			PrintWrongInput();
-		if (!CheckInputFileValidity(inputFileName))
+		int amountOfEdges;
+		if (!CheckInputFileValidity(inputFileName,amountOfEdges))
 			PrintWrongInput();
 		inputFileName = argv[1];
 		outputFileName = argv[2];

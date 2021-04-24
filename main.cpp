@@ -6,7 +6,7 @@
 #include "AdjacencyMatrixGraph.h"
 #include "GraphAlgorithms.h"
 #include "ProgramFlowStaticFunction.h"
-#include "FileValidity.h"
+#include "ProgramFlowStaticFunction.h"
 
 using namespace AlgoGraph;
 
@@ -14,11 +14,11 @@ using namespace AlgoGraph;
 int main(int argc, char* argv[])
 {
 	ofstream outputFile;
-	int NumberOfVertices, OriginVertex, EndVertex, FileStartLocation;
+	int NumberOfVertices, OriginVertex, EndVertex, FileStartLocation,numberOfEdges;
 	string inputFileName, outputFileName;
 	GetFileNames(argc, argv,inputFileName,outputFileName);
 
-	CheckInputFileValidity(inputFileName);
+	CheckInputFileValidity(inputFileName,numberOfEdges);
 	GetOriginVariables(NumberOfVertices, OriginVertex, EndVertex, FileStartLocation, inputFileName);
 
 	AdjancencyListGraph ListGraph(inputFileName, NumberOfVertices, FileStartLocation);
