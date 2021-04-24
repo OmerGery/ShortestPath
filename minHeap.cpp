@@ -78,8 +78,10 @@ namespace AlgoGraph
 
 		if (min != i)
 		{
+			int VertexA = (heapArray + i)->Vertex;
+			int VertexB = (heapArray + min)->Vertex;
 			Swap(heapArray+i, heapArray+min);
-			Swap(&AccessArray[i+1], &AccessArray[min+1]);
+			Swap(&AccessArray[VertexA], &AccessArray[VertexB]);
 			FixHeap(min);
 		}
 	}
@@ -93,8 +95,8 @@ namespace AlgoGraph
 		heapArray[i].VertexWeight.weight = newDegree;
 		while (i != 0 && heapArray[i] < heapArray[Parent(i)])
 		{
-			Swap(&heapArray[i], &heapArray[Parent(i)]);
 			int accessParent = heapArray[Parent(i)].Vertex;
+			Swap(&heapArray[i], &heapArray[Parent(i)]);
 			Swap(&AccessArray[Vertex], &AccessArray[accessParent]);
 			i = Parent(i);
 		}
@@ -114,7 +116,10 @@ namespace AlgoGraph
 			VertexDV min = heapArray[0];
 			heapSize--;
 			heapArray[0] = heapArray[heapSize];
+			int VertexWentToZero = heapArray[0].Vertex;
+			AccessArray[VertexWentToZero] = 0;
 			FixHeap(0);
+
 			return min;
 		}
 	}

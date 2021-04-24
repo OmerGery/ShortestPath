@@ -1,0 +1,6 @@
+Adjacency Dijkstra heap <0.001003> sec
+Adjacency Dijkstra array <0.001028000> sec
+Adjacency Bellman Ford <0.000789600> sec
+Matrix Dijkstra heap: <0.000388200> sec
+Matrix Dijkstra array <0.000403600> sec
+Matrix Bellman Ford <0.000783100> sec
