@@ -79,7 +79,7 @@ namespace AlgoGraph
 		if (min != i)
 		{
 			Swap(heapArray+i, heapArray+min);
-			Swap(&AccessArray[i], &AccessArray[min]);
+			Swap(&AccessArray[i+1], &AccessArray[min+1]);
 			FixHeap(min);
 		}
 	}

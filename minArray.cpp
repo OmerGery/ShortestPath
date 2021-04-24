@@ -28,6 +28,7 @@ namespace AlgoGraph
 		{
 			if (minDegreeArray[i] < minDegreeVertex)
 			{
+				minDegreeVertex = minDegreeArray[i];
 				minResult = i;
 			}
 		}
@@ -47,6 +48,9 @@ namespace AlgoGraph
 			VertexLoc = minDegreeArray[i].Vertex;
 			AccessArray[VertexLoc] = i;
 		}
+		minDegreeVertex.VertexWeight.infinity = true;
+		int newIndex = findMinIndex();
+		minDegreeVertex = minDegreeArray[newIndex];
 		return res;
 	}
 
