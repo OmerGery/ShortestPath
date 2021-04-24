@@ -92,7 +92,7 @@ namespace AlgoGraph
 				return false;
 			
 			int k = 1;
-			while (true)
+			while (k<toCheck.length())
 			{
 				if (toCheck[k] < '0' || toCheck[k]>'9')
 				{
