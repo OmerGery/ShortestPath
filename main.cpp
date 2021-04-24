@@ -13,6 +13,7 @@ using namespace AlgoGraph;
 
 int main(int argc, char* argv[])
 {
+	ofstream outputFile;
 	int NumberOfVertices, OriginVertex, EndVertex, FileStartLocation;
 	string inputFileName, outputFileName;
 	GetFileNames(argc, argv,inputFileName,outputFileName);
@@ -23,12 +24,14 @@ int main(int argc, char* argv[])
 	AdjancencyListGraph ListGraph(inputFileName, NumberOfVertices, FileStartLocation);
 	AdjacencyMatrixGraph MatrixGraph(inputFileName, NumberOfVertices, FileStartLocation);
 
-	RunHeapListDijkstra(ListGraph, OriginVertex, EndVertex);
-	RunArrayListDijkstra(ListGraph, OriginVertex, EndVertex);
-	RunBelmanFordList(ListGraph, OriginVertex, EndVertex);
-	RunHeapMatrixDijkstra(MatrixGraph, OriginVertex, EndVertex);
-	RunArrayMatrixDijkstra(MatrixGraph, OriginVertex, EndVertex);
-	RunBelmanFordMatrix(MatrixGraph, OriginVertex, EndVertex, argv[2]);
+	outputFile.open(argv[2]);
+	RunHeapListDijkstra(ListGraph, OriginVertex, EndVertex,outputFile);
+	RunArrayListDijkstra(ListGraph, OriginVertex, EndVertex, outputFile);
+	RunBelmanFordList(ListGraph, OriginVertex, EndVertex, outputFile);
+	RunHeapMatrixDijkstra(MatrixGraph, OriginVertex, EndVertex, outputFile);
+	RunArrayMatrixDijkstra(MatrixGraph, OriginVertex, EndVertex, outputFile);
+	RunBelmanFordMatrix(MatrixGraph, OriginVertex, EndVertex, outputFile);
+	outputFile.close();
 	return 0;
 }
 

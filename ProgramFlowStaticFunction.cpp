@@ -57,20 +57,15 @@ namespace AlgoGraph
 		ios_base::sync_with_stdio(false);
 		return start;
 	}
-	void EndTimer(char* fileName, std::chrono::steady_clock::time_point start,const char* FuncName)
+	void EndTimer(ofstream& fileName, std::chrono::steady_clock::time_point start,const char* FuncName)
 	{
 		auto end = chrono::high_resolution_clock::now();
-
 		double time_taken = (double)chrono::duration_cast<chrono::nanoseconds>(end - start).count();
-
 		time_taken *= 1e-9;
-		ofstream myfile(fileName);
-
-		myfile << FuncName << " <" << fixed << time_taken << setprecision(9);
-		myfile << "> sec" << endl;
-		myfile.close();
+		fileName << FuncName << " <" << fixed << time_taken << setprecision(9);
+		fileName << "> sec" << endl;
 	}
-	void RunBelmanFordMatrix(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex, char* fileName)
+	void RunBelmanFordMatrix(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex, ofstream& outputFile)
 	{
 		auto start = StartTimer();
 		float ShortestMatrixPath;
@@ -83,11 +78,11 @@ namespace AlgoGraph
 			cout << "Matrix Bellman Ford: There is a Negative Cycle in the graph" << endl;
 		else 
 			cout << "Matrix Bellman Ford: No route from " << OriginVertex << " to " << EndVertex << endl;
-		EndTimer(fileName, start, "Matrix Bellman Ford" );
-		
+		EndTimer(outputFile,start, "Matrix Bellman Ford" );
 	}
-	void RunBelmanFordList(AdjancencyListGraph& listImplementedGraph, int& OriginVertex, int& EndVertex)
+	void RunBelmanFordList(AdjancencyListGraph& listImplementedGraph, int& OriginVertex, int& EndVertex, ofstream& outputFile)
 	{
+		auto start = StartTimer();
 		float ShortestListPath;
 		Result PathOfListGraph = GraphAlgorithms::BellmanFord(&listImplementedGraph, OriginVertex, EndVertex, ShortestListPath);
 		if (PathOfListGraph == Result::SUCCESS)
@@ -96,40 +91,45 @@ namespace AlgoGraph
 			cout << "Adjacency Bellman Ford: There is a Negative Cycle in the graph" << endl;
 		else
 			cout << "Adjacency Bellman Ford: No route from " << OriginVertex << " to " << EndVertex << endl;
+		EndTimer(outputFile, start, "Adjacency Bellman Ford");
 	}
-	void RunHeapMatrixDijkstra(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex)
+	void RunHeapMatrixDijkstra(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex, ofstream& outputFile )
 	{
+		auto start = StartTimer();
 		float ShortestMatrixPath;
-
 		if (GraphAlgorithms::DijkstraHeap(&MatrixImplementedGraph, OriginVertex, EndVertex, ShortestMatrixPath))
 		{
 			cout << "Matrix Dijkstra heap: No Route from " << OriginVertex << " to " << EndVertex << endl;
 		}
 		else cout << "Matrix Dijkstra heap " << ShortestMatrixPath << endl;
+		EndTimer(outputFile, start, "Matrix Dijkstra heap:");
 	}
-	void RunHeapListDijkstra(AdjancencyListGraph& ListImplementedGraph, int& OriginVertex, int& EndVertex)
+	void RunHeapListDijkstra(AdjancencyListGraph& ListImplementedGraph, int& OriginVertex, int& EndVertex, ofstream& outputFile)
 	{
+		auto start = StartTimer();
 		float ShortestListPath;
-
 		if (GraphAlgorithms::DijkstraHeap(&ListImplementedGraph, OriginVertex, EndVertex, ShortestListPath))
 		{
 			cout << "Adjacency Dijkstra heap: No Route from " << OriginVertex << " to " << EndVertex << endl;
 		}
 		else cout << "Adjacency Dijkstra heap " << ShortestListPath << endl;
+		EndTimer(outputFile, start, "Adjacency Dijkstra heap");
 	}
 
-	void RunArrayMatrixDijkstra(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex)
+	void RunArrayMatrixDijkstra(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex, ofstream& outputFile)
 	{
+		auto start = StartTimer();
 		float ShortestMatrixPath;
-
 		if (GraphAlgorithms::DijkstraArray(&MatrixImplementedGraph, OriginVertex, EndVertex, ShortestMatrixPath))
 		{
 			cout << "Matrix Dijkstra array: No Route from " << OriginVertex << " to " << EndVertex << endl;
 		}
 		else cout << "Matrix Dijkstra array " << ShortestMatrixPath << endl;
+		EndTimer(outputFile, start, "Matrix Dijkstra array");
 	}
-	void RunArrayListDijkstra(AdjancencyListGraph& ListImplementedGraph, int& OriginVertex, int& EndVertex)
+	void RunArrayListDijkstra(AdjancencyListGraph& ListImplementedGraph, int& OriginVertex, int& EndVertex, ofstream& outputFile)
 	{
+		auto start = StartTimer();
 		float ShortestListPath;
 
 		if (GraphAlgorithms::DijkstraArray(&ListImplementedGraph, OriginVertex, EndVertex, ShortestListPath))
@@ -137,6 +137,7 @@ namespace AlgoGraph
 			cout << "Adjacency Dijkstra array: No Route from " << OriginVertex << " to " << EndVertex << endl;
 		}
 		else cout << "Adjacency Dijkstra array " << ShortestListPath << endl;
+		EndTimer(outputFile, start, "Adjacency Dijkstra array");
 	}
 }
 
