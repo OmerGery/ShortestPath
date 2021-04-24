@@ -91,7 +91,7 @@ namespace AlgoGraph
 			if (toCheck[0] < '0' || toCheck[0]>'9')
 				return false;
 			
-			int k = 1;
+			unsigned int k = 1;
 			while (k<toCheck.length())
 			{
 				if (toCheck[k] < '0' || toCheck[k]>'9')

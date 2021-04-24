@@ -14,7 +14,7 @@ using namespace AlgoGraph;
 int main(int argc, char* argv[])
 {
 	ofstream outputFile;
-	int NumberOfVertices, OriginVertex, EndVertex, FileStartLocation,numberOfEdges;
+	int NumberOfVertices=0, OriginVertex, EndVertex, FileStartLocation=0,numberOfEdges;
 	string inputFileName, outputFileName;
 	GetFileNames(argc, argv,inputFileName,outputFileName);
 
