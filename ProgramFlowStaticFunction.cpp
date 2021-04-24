@@ -14,23 +14,19 @@ namespace AlgoGraph
 	bool CheckInputFileValidity(string i_inputFileName, int& amountOfEdges)
 	{
 		ifstream inputFile;
+		string toCheck;
 		inputFile.open(i_inputFileName);
 		char line[256];
-		char currentChar;
 		amountOfEdges = 0;
 		// We check the first three lines
 		for (int i = 0; i < 3; i++)
 		{
-			int k = 0;
 			inputFile.getline(line, 256);
-			currentChar = line[k];
-			while (currentChar != '\0')
-			{
-				if (currentChar > '9' || currentChar < '0')
-					return false;
-				k++;
-				currentChar = line[k];	
-			}
+			if (line[0] == '0')
+				return false;
+			toCheck = line;
+			if (!(onlyDigitsWithSpaces(toCheck)))
+				return false;
 		}
 		// check the other lines and sum how much Edges there are.
 		string currentLine;
@@ -53,7 +49,6 @@ namespace AlgoGraph
 				amountOfEdges++;
 			}
 		}
-		cout << "there are  " << amountOfEdges << " edges" << endl;
 		return true;
 	}
 	bool onlyWhiteSpaces(string& toCheck)
@@ -79,11 +74,11 @@ namespace AlgoGraph
 	bool onlyDigitsWithSpaces(string& toCheck)
 	{
 		int i = 0;
-		while (toCheck[i] >= '0' && toCheck[i] < '9')
+		while (toCheck[i] >= '0' && toCheck[i] <= '9')
 		{
 			i++;
 		}
-		toCheck.erase(0, i);
+		toCheck.erase(0,i);
 		return onlyWhiteSpaces(toCheck);
 
 	}
@@ -96,14 +91,21 @@ namespace AlgoGraph
 			if (toCheck[0] < '0' || toCheck[0]>'9')
 				return false;
 			
-			if (toCheck[1] < '0' || toCheck[1]>'9')
+			int k = 1;
+			while (true)
 			{
-				if (toCheck[1] != '.' && toCheck[1] != ' ' && toCheck [1] != '\t')
+				if (toCheck[k] < '0' || toCheck[k]>'9')
 				{
-					return false;
+					if (toCheck[k] == '.' || toCheck[k] == ' ' || toCheck[k] == '\t')
+					{
+						break;
+					}
+					else return false;
+					
 				}
+				k++;
 			}
-			toCheck.erase(0, 2);
+			toCheck.erase(0, k+1);
 			if (toCheck.length() == 0)
 				return true;
 			return(onlyDigitsWithSpaces(toCheck));
