@@ -8,29 +8,105 @@
 #include <chrono>
 #include <iomanip>
 #include "ProgramFlowStaticFunction.h"
-#define MAX_CHARS_INLINE 512
+using namespace std;
 namespace AlgoGraph
 {
 	bool CheckInputFileValidity(string i_inputFileName, int& amountOfEdges)
 	{
 		ifstream inputFile;
 		inputFile.open(i_inputFileName);
-		char* line = nullptr;
+		char line[256];
 		char currentChar;
 		amountOfEdges = 0;
+		// We check the first three lines
 		for (int i = 0; i < 3; i++)
 		{
 			int k = 0;
-			inputFile.getline(line, MAX_CHARS_INLINE);
+			inputFile.getline(line, 256);
 			currentChar = line[k];
 			while (currentChar != '\0')
 			{
 				if (currentChar > '9' || currentChar < '0')
 					return false;
-				currentChar = line[k];
 				k++;
+				currentChar = line[k];	
 			}
+		}
+		// check the other lines and sum how much Edges there are.
+		string currentLine;
+		while (inputFile)
+		{
+			inputFile.getline(line, 256);
+			currentLine = line;
+			if (!onlyWhiteSpaces(currentLine))
+			{
+				for (int i = 0; i < 2; i++)
+				{
+					string Num = currentLine.substr(0, currentLine.find(' '));
+					if (!onlyDigits(Num))
+						PrintWrongInput();
+					currentLine.erase(0, Num.length()+1);
+				}
 
+				if (!onlyDigitsWithDot(currentLine))
+					PrintWrongInput();
+				amountOfEdges++;
+			}
+		}
+		cout << "there are  " << amountOfEdges << " edges" << endl;
+		return true;
+	}
+	bool onlyWhiteSpaces(string& toCheck)
+	{
+		if (toCheck.length() == 0)
+			return true;
+		for (unsigned int i = 0; i < toCheck.length(); i++)
+		{
+			if (!(toCheck[i] == ' ' || toCheck[i] == '\t' || toCheck[i] == '\n'))
+				return false;
+		}
+		return true;
+	}
+	bool onlyDigits(string& toCheck)
+	{
+		for (unsigned int i = 0; i < toCheck.length(); i++)
+		{
+			if (toCheck[i] < '0' || toCheck[i]>'9')
+				return false;
+		}
+		return true;
+	}
+	bool onlyDigitsWithSpaces(string& toCheck)
+	{
+		int i = 0;
+		while (toCheck[i] >= '0' && toCheck[i] < '9')
+		{
+			i++;
+		}
+		toCheck.erase(0, i);
+		return onlyWhiteSpaces(toCheck);
+
+	}
+	bool onlyDigitsWithDot(string& toCheck)
+	{
+		if (toCheck.length() < 2)
+			return onlyDigits(toCheck);
+		else
+		{
+			if (toCheck[0] < '0' || toCheck[0]>'9')
+				return false;
+			
+			if (toCheck[1] < '0' || toCheck[1]>'9')
+			{
+				if (toCheck[1] != '.' && toCheck[1] != ' ' && toCheck [1] != '\t')
+				{
+					return false;
+				}
+			}
+			toCheck.erase(0, 2);
+			if (toCheck.length() == 0)
+				return true;
+			return(onlyDigitsWithSpaces(toCheck));
 		}
 		return true;
 	}
@@ -61,9 +137,6 @@ namespace AlgoGraph
 		if (CheckComandArguments(argc))
 			inputFileName = argv[1];
 		else
-			PrintWrongInput();
-		int amountOfEdges;
-		if (!CheckInputFileValidity(inputFileName,amountOfEdges))
 			PrintWrongInput();
 		inputFileName = argv[1];
 		outputFileName = argv[2];

@@ -17,7 +17,7 @@ namespace AlgoGraph
         public:
             void IsSelfLoop(int i_OutVertex, int i_InVertex);
             AdjancencyListGraph(int i_NumberOfVertex);
-            AdjancencyListGraph(string i_InputFileName, int i_NumberOfVertex, int i_fileIndentation);
+            AdjancencyListGraph(string i_InputFileName, int i_NumberOfVertex, int i_fileIndentation, int amountOfEdges);
             static AdjancencyListGraph MakeEmptyGraph(int i_NumberOfVertex);
             bool isAdjacent(int i_OutVertex, int i_InVertex);
             DynamicList<GraphEdge> GetAdjList(int i_OutVertex);

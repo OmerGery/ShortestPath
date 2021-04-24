@@ -18,11 +18,12 @@ int main(int argc, char* argv[])
 	string inputFileName, outputFileName;
 	GetFileNames(argc, argv,inputFileName,outputFileName);
 
-	CheckInputFileValidity(inputFileName,numberOfEdges);
-	GetOriginVariables(NumberOfVertices, OriginVertex, EndVertex, FileStartLocation, inputFileName);
+	if (CheckInputFileValidity(inputFileName, numberOfEdges))
+		GetOriginVariables(NumberOfVertices, OriginVertex, EndVertex, FileStartLocation, inputFileName);
+	else PrintWrongInput();
 
-	AdjancencyListGraph ListGraph(inputFileName, NumberOfVertices, FileStartLocation);
-	AdjacencyMatrixGraph MatrixGraph(inputFileName, NumberOfVertices, FileStartLocation);
+	AdjancencyListGraph ListGraph(inputFileName, NumberOfVertices, FileStartLocation,numberOfEdges);
+	AdjacencyMatrixGraph MatrixGraph(inputFileName, NumberOfVertices, FileStartLocation,numberOfEdges);
 
 	outputFile.open(argv[2]);
 	RunHeapListDijkstra(ListGraph, OriginVertex, EndVertex,outputFile);

@@ -72,7 +72,7 @@ namespace AlgoGraph
 		delete[] m_AdjancencyMatrix;
 	}
 
-	AdjacencyMatrixGraph::AdjacencyMatrixGraph(string i_InputFileName, int i_NumberOfVertex,int i_fileIndentation)
+	AdjacencyMatrixGraph::AdjacencyMatrixGraph(string i_InputFileName, int i_NumberOfVertex,int i_fileIndentation,int amountOfEdges)
 	{
 		ifstream inputFile;
 		inputFile.open(i_InputFileName);
@@ -82,7 +82,7 @@ namespace AlgoGraph
 		int inVertex;
 		int outVertex;
 		float weightOfEdge;
-		while (!inputFile.eof())
+		for(int i=0;i<amountOfEdges;i++)
 		{
 			inputFile >> outVertex >> inVertex >> weightOfEdge;
 			AddEdgeToGraph(outVertex, inVertex, weightOfEdge);

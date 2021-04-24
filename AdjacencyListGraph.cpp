@@ -30,7 +30,7 @@ namespace AlgoGraph
     }
 
 
-    AdjancencyListGraph::AdjancencyListGraph(string i_InputFileName, int i_NumberOfVertex, int i_fileIndentation) : m_AdjancencyList(i_NumberOfVertex + 1)
+    AdjancencyListGraph::AdjancencyListGraph(string i_InputFileName, int i_NumberOfVertex, int i_fileIndentation, int amountOfEdges) : m_AdjancencyList(i_NumberOfVertex + 1)
     {
         m_NumberOfVertices = i_NumberOfVertex;
         ifstream inputFile;
@@ -39,7 +39,7 @@ namespace AlgoGraph
         int inVertex;
         int outVertex;
         float weightOfEdge;
-        while (!inputFile.eof())
+        for(int i=0;i<amountOfEdges;i++)
         {
             inputFile >> outVertex >> inVertex >> weightOfEdge;
             AddEdgeToGraph(outVertex, inVertex, weightOfEdge);

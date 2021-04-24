@@ -11,6 +11,9 @@
 namespace AlgoGraph
 {
 	bool CheckInputFileValidity(string i_inputFileName, int& amountOfEdges);
+	bool onlyDigits(string& toCheck);
+	bool onlyWhiteSpaces(string& toCheck);
+	bool onlyDigitsWithDot(string& toCheck);
 	bool firstThreeSelectionAreValid(int numberOfVertex, int pathStartingVertex, int pathEndVertex);
 	void PrintWrongInput();
 	bool CheckComandArguments(int argc);
