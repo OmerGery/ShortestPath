@@ -45,7 +45,8 @@ namespace AlgoGraph
 						PrintWrongInput();
 					currentLine.erase(0, Num.length()+1);
 				}
-
+				if (currentLine.length() == 0)
+					PrintWrongInput();
 				if (!onlyDigitsWithDot(currentLine))
 					PrintWrongInput();
 				amountOfEdges++;
