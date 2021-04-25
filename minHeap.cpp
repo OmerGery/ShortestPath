@@ -26,7 +26,7 @@ namespace AlgoGraph
 			AccessArray[i + 1] = i; //places the index location of vertex in heapArray
 		}
 
-		allocated = 1; //no allocation made- array is given from outer data
+		allocated = 1; 
 		int n = (size / 2) - 1;
 		for (int i = n; i >= 0; i--)
 			FixHeap(i);
