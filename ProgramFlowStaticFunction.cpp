@@ -8,8 +8,8 @@
 #include <chrono>
 #include <iomanip>
 #include "ProgramFlowStaticFunction.h"
-
-
+#define LINE_MAX 256
+#define COMMAND_ARGS 3
 using namespace std;
 namespace AlgoGraph
 {
@@ -18,12 +18,12 @@ namespace AlgoGraph
 		ifstream inputFile;
 		string toCheck;
 		inputFile.open(i_inputFileName);
-		char line[256];
+		char line[LINE_MAX];
 		amountOfEdges = 0;
 		// We check the first three lines
 		for (int i = 0; i < 3; i++)
 		{
-			inputFile.getline(line, 256);
+			inputFile.getline(line, LINE_MAX);
 			if (line[0] == '0')
 				return false;
 			toCheck = line;
@@ -34,7 +34,7 @@ namespace AlgoGraph
 		string currentLine;
 		while (inputFile)
 		{
-			inputFile.getline(line, 256);
+			inputFile.getline(line, LINE_MAX);
 			currentLine = line;
 			if (!onlyWhiteSpaces(currentLine))
 			{
@@ -134,7 +134,7 @@ namespace AlgoGraph
 
 	bool CheckComandArguments(int argc)
 	{
-		return argc == 3;
+		return argc == COMMAND_ARGS;
 	}
 
 	void GetFileNames(int argc, char* argv[],string& inputFileName,string& outputFileName)
