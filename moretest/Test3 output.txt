@@ -1,0 +1,6 @@
+Adjacency Dijkstra heap 64
+Adjacency Dijkstra array 64
+Adjacency Bellman Ford 64
+Matrix Dijkstra heap 64
+Matrix Dijkstra array 64
+Matrix Bellman Ford 64
