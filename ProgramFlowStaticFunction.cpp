@@ -13,6 +13,8 @@
 using namespace std;
 namespace AlgoGraph
 {
+
+
 	bool CheckInputFileValidity(string i_inputFileName, int& amountOfEdges)
 	{
 		ifstream inputFile;
@@ -168,6 +170,8 @@ namespace AlgoGraph
 		ios_base::sync_with_stdio(false);
 		return start;
 	}
+
+
 	void EndTimer(ofstream& fileName, std::chrono::steady_clock::time_point start,const char* FuncName)
 	{
 		auto end = chrono::high_resolution_clock::now();
@@ -176,6 +180,8 @@ namespace AlgoGraph
 		fileName << FuncName << " <" << fixed << time_taken << setprecision(9);
 		fileName << "> sec" << endl;
 	}
+
+
 	void RunBelmanFordMatrix(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex, ofstream& outputFile)
 	{
 		auto start = StartTimer();
@@ -191,6 +197,8 @@ namespace AlgoGraph
 			cout << "Matrix Bellman Ford: No route from " << OriginVertex << " to " << EndVertex << endl;
 		EndTimer(outputFile,start, "Matrix Bellman Ford" );
 	}
+
+
 	void RunBelmanFordList(AdjancencyListGraph& listImplementedGraph, int& OriginVertex, int& EndVertex, ofstream& outputFile)
 	{
 		auto start = StartTimer();
@@ -204,6 +212,8 @@ namespace AlgoGraph
 			cout << "Adjacency Bellman Ford: No route from " << OriginVertex << " to " << EndVertex << endl;
 		EndTimer(outputFile, start, "Adjacency Bellman Ford");
 	}
+
+
 	void RunHeapMatrixDijkstra(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex, ofstream& outputFile )
 	{
 		auto start = StartTimer();
@@ -215,6 +225,8 @@ namespace AlgoGraph
 		else cout << "Matrix Dijkstra heap " << ShortestMatrixPath << endl;
 		EndTimer(outputFile, start, "Matrix Dijkstra heap:");
 	}
+
+
 	void RunHeapListDijkstra(AdjancencyListGraph& ListImplementedGraph, int& OriginVertex, int& EndVertex, ofstream& outputFile)
 	{
 		auto start = StartTimer();
@@ -227,6 +239,8 @@ namespace AlgoGraph
 		EndTimer(outputFile, start, "Adjacency Dijkstra heap");
 	}
 
+
+
 	void RunArrayMatrixDijkstra(AdjacencyMatrixGraph& MatrixImplementedGraph, int& OriginVertex, int& EndVertex, ofstream& outputFile)
 	{
 		auto start = StartTimer();
@@ -238,6 +252,8 @@ namespace AlgoGraph
 		else cout << "Matrix Dijkstra array " << ShortestMatrixPath << endl;
 		EndTimer(outputFile, start, "Matrix Dijkstra array");
 	}
+
+
 	void RunArrayListDijkstra(AdjancencyListGraph& ListImplementedGraph, int& OriginVertex, int& EndVertex, ofstream& outputFile)
 	{
 		auto start = StartTimer();
