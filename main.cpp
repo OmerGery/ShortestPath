@@ -1,3 +1,16 @@
+/* Shortest path project - by Nadav Avraham , Omer Gery.
+Operating instructions:
+1.Enter a positive integer to select how many vertices will be in the graph and press enter.
+2.Enter a positive integer to select the starting vertex to find shortest paths from and press enter.
+3.Enter a positive integer to select the ending vertex to find shortest paths to.
+4.Enter a series of 3 numbers represnting a edge in the graph in the following format:
+<OutVertex> (1 space) <InVertex> (1 space) <EdgeWeight> (enter)
+Outvertex,InVertex - a number between 1 - to the number you selected in 1. EdgeWeight - a non negative number, can be a fraction.
+5.Repeat stage 4 to as many edges as you wish.
+Notes:
+- Negative edge weight is not allowed.
+- The Graph is a simple graph - parallel edges and self loops are not allowed. 
+*/
 #include <iostream>
 #include <fstream>
 #include "AbstractGraph.h"
