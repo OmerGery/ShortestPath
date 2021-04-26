@@ -1,5 +1,5 @@
+// this is a Priority Queue abstract class, holds the common methods for the queue data structures 
 #pragma once
-
 #include "GraphEdge.h"
 #include <iostream>
 

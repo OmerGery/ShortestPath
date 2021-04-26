@@ -1,3 +1,4 @@
+// this class implents a Minimum heap data structre - a type of priority queue (inherits from PriorityQueue)
 #pragma once 
 #include "ConstTypes.h"
 #include "GraphEdge.h"

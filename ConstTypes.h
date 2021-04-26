@@ -1,3 +1,4 @@
+// this file has definitions for constants,enums ,structures and other global rellevant fields.
 #pragma once
 #define NO_PARENT -1
 

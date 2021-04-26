@@ -1,3 +1,4 @@
+// this class implents a graph edge to be used within graphs.
 #pragma once
 #include "ConstTypes.h"
 

@@ -1,5 +1,5 @@
+// This is a Graph data structrue implented by Matrix , it inherits from the abstract graph class.
 #pragma once
-
 #include "DynamicList.h"
 #include "DynamicArray.h"
 #include "AbstractGraph.h"

@@ -1,5 +1,5 @@
+// This is a Graph data structrue implented by Adjancency List , it inherits from the abstract graph class.
 #pragma once
-
 #include "DynamicList.h"
 #include "DynamicArray.h"
 #include "GraphEdge.h"

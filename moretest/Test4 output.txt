@@ -1,0 +1,6 @@
+Adjacency Dijkstra heap 47.5
+Adjacency Dijkstra array 47.5
+Adjacency Bellman Ford 47.5
+Matrix Dijkstra heap 47.5
+Matrix Dijkstra array 47.5
+Matrix Bellman Ford 47.5
