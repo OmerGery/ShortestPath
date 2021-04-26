@@ -1,13 +1,13 @@
+// this is a abstract graph class, holds the common methods for the Graph data structures 
 #pragma once
-
 #include "DynamicList.h"
 #include "GraphEdge.h"
 #include <iostream>
 using namespace std;
 namespace AlgoGraph
 {
-	class AbstractGraph
-	{
+	class AbstractGraph 
+	{ 
 		protected:
 		int m_NumberOfVertices;
 

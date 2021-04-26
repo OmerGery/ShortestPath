@@ -1,3 +1,4 @@
+// this class implents a Minimum Array data structres - a type of priority queue (inherits from PriorityQueue)
 #pragma once 
 #include "ConstTypes.h"
 #include "GraphEdge.h"

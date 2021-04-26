@@ -1,3 +1,6 @@
+// this a class which allows the main to run the algorithms , it has static methods in order to do so. 
+// containing the algorithms : belman ford , Dijkstra: implented with heap , Dijkstra: implented with array
+// the algorithms can run with any kind of implented Graph data structure - as it's methods run with an Abstract Graph type.
 #pragma once
 #include "DynamicList.h"
 #include "AbstractGraph.h"

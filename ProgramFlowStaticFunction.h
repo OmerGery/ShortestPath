@@ -1,3 +1,5 @@
+// this files holds declerations for global function which handles the main program flow :
+//-input checks, calling the functions to run algorithms, etc.
 #pragma once
 #include <iostream>
 #include <fstream>
