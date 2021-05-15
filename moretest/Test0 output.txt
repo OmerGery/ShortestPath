@@ -1,6 +1,0 @@
-Adjacency Dijkstra heap 31
-Adjacency Dijkstra array 31
-Adjacency Bellman Ford 31
-Matrix Dijkstra heap 31
-Matrix Dijkstra array 31
-Matrix Bellman Ford 31

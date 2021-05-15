@@ -1,6 +1,0 @@
-Adjacency Dijkstra heap 11
-Adjacency Dijkstra array 11
-Adjacency Bellman Ford 11
-Matrix Dijkstra heap 11
-Matrix Dijkstra array 11
-Matrix Bellman Ford 11

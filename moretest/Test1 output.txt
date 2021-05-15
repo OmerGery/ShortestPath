@@ -1,6 +1,0 @@
-Adjacency Dijkstra heap 6
-Adjacency Dijkstra array 6
-Adjacency Bellman Ford 6
-Matrix Dijkstra heap 6
-Matrix Dijkstra array 6
-Matrix Bellman Ford 6
